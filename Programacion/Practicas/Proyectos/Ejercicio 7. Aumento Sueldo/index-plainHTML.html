@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aumento de sueldo - HTML Plano</title>
+</head>
+
+<body>
+
+  <section id="body">
+    <h2>Aumento de sueldo (HTML Plano)</h2>
+    <button id="body_btNuevoTrabajador">Nuevo trabajador</button>
+    <hr>
+    <div>
+      El monto adicional total es: $<span id="body_lblTotalMontoAdicional">0</span>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo de trabajador</th>
+          <th>Aumento</th>
+        </tr>
+      </thead>
+      <tbody id="body_tbodyTrabajadores"></tbody>
+    </table>
+  </section>
+
+  <section id="trabajador" hidden style="margin-top: 20px; border: 1px solid #ccc; padding: 15px; width: 300px;">
+    <h5>Procesar Trabajador</h5>
+    <div>
+      <label>Nombre:
+        <input type="text" id="trabajador_inNombre" placeholder="Nombre del trabajador">
+      </label>
+    </div>
+    <div>
+      <label>Tipo de trabajador:
+        <select id="trabajador_slTipo">
+          <option value="1">Obrero (20%)</option>
+          <option value="2">Administrativo (10%)</option>
+        </select>
+      </label>
+    </div>
+    <div>
+      <label>Sueldo actual:
+        <input type="number" id="trabajador_inSueldo" placeholder="Ej: 100">
+      </label>
+    </div>
+    <br>
+    <button id="trabajador_btCancelar">Cancelar</button>
+    <button id="trabajador_btAceptar">Aceptar</button>
+  </section>
+
+  <script type="module">
+    import ControladorAumentoSueldo from "./dist/controllers/c/ControladorAumentoSueldo.js";
+    import ControladorTrabajador from "./dist/controllers/c/ControladorTrabajador.js";
+    import EmpresaVistaPlain from "./dist/views/v/EmpresaVistaPlain.js";
+    import TrabajadorVistaPlain from "./dist/views/v/TrabajadorVistaPlain.js";
+
+    // 1. Instanciamos las vistas planas
+    const vistaEmpresa = new EmpresaVistaPlain();
+    const vistaTrabajador = new TrabajadorVistaPlain();
+
+    // 2. Inyectamos las vistas en los mismos controladores
+    const controladorTrabajador = new ControladorTrabajador(vistaTrabajador);
+    new ControladorAumentoSueldo(vistaEmpresa, controladorTrabajador);
+  </script>
+</body>
+</html>

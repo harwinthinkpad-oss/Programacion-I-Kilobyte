@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aumento de sueldo - Bootstrap</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div id="app-bootstrap" class="container mt-5">
+    <h2>Aumento de sueldo (Bootstrap)</h2>
+    <button type="button" class="btn btn-primary" id="body_btNuevoTrabajador">Nuevo Trabajador</button>
+    <hr>
+    <div class="alert alert-info">
+      El monto adicional total es: $<span id="body_lblTotalMontoAdicional" class="fw-bold">0</span>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Tipo de trabajador</th>
+          <th>Aumento</th>
+        </tr>
+      </thead>
+      <tbody id="body_tbodyTrabajadores"></tbody>
+    </table>
+  </div>
+
+  <div class="modal fade" id="trabajador" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Procesar Trabajador</h5>
+        </div>
+        <div class="modal-body">
+          <label class="form-label">Nombre:</label>
+          <input type="text" class="form-control" id="trabajador_inNombre">
+          <label class="form-label">Tipo de trabajador:</label>
+          <select class="form-select" id="trabajador_slTipo">
+            <option value="1">Obrero (20%)</option>
+            <option value="2">Administrativo (10%)</option>
+          </select>
+          <label class="form-label">Sueldo actual:</label>
+          <input type="number" class="form-control" id="trabajador_inSueldo">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="trabajador_btCancelar">Cancelar</button>
+          <button type="button" class="btn btn-success" id="trabajador_btAceptar">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module">
+    import ControladorAumentoSueldo from "./dist/controllers/c/ControladorAumentoSueldo.js";
+    import ControladorTrabajador from "./dist/controllers/c/ControladorTrabajador.js";
+    import EmpresaVistaBootstrap from "./dist/views/v/EmpresaVistaBootstrap.js";
+    import TrabajadorVistaBootstrap from "./dist/views/v/TrabajadorVistaBootstrap.js";
+
+    // 1. Instanciamos las vistas
+    const vistaEmpresa = new EmpresaVistaBootstrap();
+    const vistaTrabajador = new TrabajadorVistaBootstrap();
+
+    // 2. Inyectamos las vistas en los mismos controladores
+    const controladorTrabajador = new ControladorTrabajador(vistaTrabajador);
+    new ControladorAumentoSueldo(vistaEmpresa, controladorTrabajador);
+  </script>
+</body>
+</html>

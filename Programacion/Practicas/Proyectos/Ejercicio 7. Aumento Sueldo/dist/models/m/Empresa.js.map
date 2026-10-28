@@ -1,0 +1,1 @@
+{"version":3,"file":"Empresa.js","sourceRoot":"","sources":["../../../src/models/m/Empresa.ts"],"names":[],"mappings":"AAEA,MAAM,CAAC,OAAO,OAAO,OAAO;IAClB,iBAAiB,CAAS;IAElC;QACE,IAAI,CAAC,iBAAiB,GAAG,CAAC,CAAC;IAC7B,CAAC;IAED,kBAAkB,CAAC,UAAsB;QACvC,IAAI,CAAC,iBAAiB,IAAI,UAAU,CAAC,OAAO,EAAE,CAAC;IACjD,CAAC;IAED,mBAAmB;QACjB,OAAO,IAAI,CAAC,iBAAiB,CAAC;IAChC,CAAC;CACF"}
