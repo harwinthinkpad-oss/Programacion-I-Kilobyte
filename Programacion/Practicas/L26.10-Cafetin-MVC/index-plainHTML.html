@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comensales - HTML plano</title>
+</head>
+
+<body>
+  <main id="body">
+    <h1>Control de comensales</h1>
+    <p>Registra pedidos de empanadas o pastelitos y consulta el inventario disponible.</p>
+    <button type="button" id="body_btNuevoCliente">Nuevo cliente</button>
+
+    <section aria-labelledby="inventario_titulo">
+      <h2 id="inventario_titulo">Resumen</h2>
+      <p>Clientes atendidos: <strong id="body_lblClientesAtendidos">0</strong></p>
+      <p>Jugos disponibles: <strong id="body_lblJugos">10</strong></p>
+      <p>Empanadas disponibles: <strong id="body_lblEmpanadas">20</strong></p>
+      <p>Pastelitos disponibles: <strong id="body_lblPastelitos">15</strong></p>
+      <p id="body_lblMensaje" role="status" aria-live="polite">Listo para atender clientes.</p>
+    </section>
+
+    <section aria-labelledby="clientes_titulo">
+      <h2 id="clientes_titulo">Clientes y gastos</h2>
+      <p>Precios: empanada 20 Bs, pastelito 10 Bs, jugo 5 Bs.</p>
+      <ol id="body_listaClientes" aria-live="polite">
+        <li data-placeholder>Aún no hay clientes registrados.</li>
+      </ol>
+    </section>
+  </main>
+
+  <section id="cliente" hidden aria-labelledby="cliente_titulo">
+    <h2 id="cliente_titulo">Registrar pedido</h2>
+    <form id="cliente_form">
+      <p>
+        <label for="cliente_inNombre">Nombre:</label>
+        <input type="text" id="cliente_inNombre" required maxlength="100">
+      </p>
+      <p>
+        <label for="cliente_slTipoComida">Tipo de comida:</label>
+        <select id="cliente_slTipoComida" required>
+          <option value="">Selecciona una opción</option>
+          <option value="1">Empanada</option>
+          <option value="2">Pastelito</option>
+        </select>
+      </p>
+      <p>
+        <label for="cliente_inCantidadComida">Cantidad de comida:</label>
+        <input type="number" id="cliente_inCantidadComida" min="1" step="1" value="1" required>
+      </p>
+      <p>
+        <input type="checkbox" id="cliente_ckJugo">
+        <label for="cliente_ckJugo">También desea un jugo</label>
+      </p>
+      <button type="button" id="cliente_btCancelar">Cancelar</button>
+      <button type="submit" id="cliente_btAceptar">Aceptar</button>
+    </form>
+  </section>
+
+  <script type="module">
+    import cClientes from "./dist/controllers/cClientes.js";
+    import cComensales from "./dist/controllers/cComensales.js";
+    import vClientesPlain from "./dist/views/vClientesPlain.js";
+    import vComensalesPlain from "./dist/views/vComensalesPlain.js";
+
+    const controladorClientes = new cClientes(new vClientesPlain());
+    new cComensales(new vComensalesPlain(), controladorClientes);
+  </script>
+</body>
+
+</html>

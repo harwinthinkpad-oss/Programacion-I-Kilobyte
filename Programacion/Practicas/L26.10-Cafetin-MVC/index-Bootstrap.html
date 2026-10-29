@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comensales - Bootstrap</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <main id="body" class="container mt-5">
+    <h1>Control de comensales</h1>
+    <p>Registra pedidos de empanadas o pastelitos y consulta el inventario disponible.</p>
+    <button type="button" class="btn btn-primary" id="body_btNuevoCliente">Nuevo cliente</button>
+
+    <section class="mt-4" aria-labelledby="inventario_titulo">
+      <h2 id="inventario_titulo">Resumen</h2>
+      <p>Clientes atendidos: <strong id="body_lblClientesAtendidos">0</strong></p>
+      <p>Jugos disponibles: <strong id="body_lblJugos">10</strong></p>
+      <p>Empanadas disponibles: <strong id="body_lblEmpanadas">20</strong></p>
+      <p>Pastelitos disponibles: <strong id="body_lblPastelitos">15</strong></p>
+      <div id="body_lblMensaje" class="alert alert-success" role="status" aria-live="polite">
+        Listo para atender clientes.
+      </div>
+    </section>
+
+    <section class="mt-4" aria-labelledby="clientes_titulo">
+      <h2 id="clientes_titulo">Clientes y gastos</h2>
+      <p>Precios: empanada 20 Bs, pastelito 10 Bs, jugo 5 Bs.</p>
+      <ol id="body_listaClientes" class="list-group list-group-numbered" aria-live="polite">
+        <li class="list-group-item" data-placeholder>Aún no hay clientes registrados.</li>
+      </ol>
+    </section>
+  </main>
+
+  <div class="modal fade" id="cliente" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <form class="modal-content" id="cliente_form">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5">Registrar pedido</h2>
+        </div>
+        <div class="modal-body">
+          <label class="form-label" for="cliente_inNombre">Nombre:</label>
+          <input type="text" class="form-control mb-3" id="cliente_inNombre" required maxlength="100">
+
+          <label class="form-label" for="cliente_slTipoComida">Tipo de comida:</label>
+          <select class="form-select mb-3" id="cliente_slTipoComida" required>
+            <option value="">Selecciona una opción</option>
+            <option value="1">Empanada</option>
+            <option value="2">Pastelito</option>
+          </select>
+
+          <label class="form-label" for="cliente_inCantidadComida">Cantidad de comida:</label>
+          <input type="number" class="form-control mb-3" id="cliente_inCantidadComida" min="1" step="1" value="1" required>
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="cliente_ckJugo">
+            <label class="form-check-label" for="cliente_ckJugo">También desea un jugo</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cliente_btCancelar">Cancelar</button>
+          <button type="submit" class="btn btn-success" id="cliente_btAceptar">Aceptar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import cClientes from "./dist/controllers/cClientes.js";
+    import cComensales from "./dist/controllers/cComensales.js";
+    import vClientesBootstrap from "./dist/views/vClientesBootstrap.js";
+    import vComensalesBootstrap from "./dist/views/vComensalesBootstrap.js";
+
+    const controladorClientes = new cClientes(new vClientesBootstrap());
+    new cComensales(new vComensalesBootstrap(), controladorClientes);
+  </script>
+</body>
+
+</html>
