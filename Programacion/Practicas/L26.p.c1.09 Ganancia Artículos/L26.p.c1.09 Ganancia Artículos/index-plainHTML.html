@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ganancia Artículos - HTML Plano</title>
+</head>
+
+<body>
+
+  <section id="body">
+    <h2>Gestión de Tienda</h2>
+    <button id="body_btNuevoArticulo">Nuevo Artículo</button>
+    <hr>
+    <div>
+      Ganancia Total: <span id="body_lblGananciaTotal">0</span><br>
+      Código del artículo con mayor precio de venta: <span id="body_lblCodigoMayor">0</span>
+    </div>
+  </section>
+
+  <section id="articulo" hidden style="margin-top: 20px; border: 1px solid #ccc; padding: 15px; width: 300px;">
+    <h5>Procesar Artículo</h5>
+    <div>
+      <label>Código:
+        <input type="number" id="articulo_inCodigo">
+      </label>
+    </div>
+    <div>
+      <label>Costo:
+        <input type="number" id="articulo_inCosto">
+      </label>
+    </div>
+    <div>
+      <label>Precio de Venta:
+        <input type="number" id="articulo_inPrecioVenta">
+      </label>
+    </div>
+    <br>
+    <button id="articulo_btCancelar">Cancelar</button>
+    <button id="articulo_btAceptar">Aceptar</button>
+  </section>
+
+  <script type="module">
+    import cTienda from "./dist/controllers/cTienda.js";
+    import cArticulo from "./dist/controllers/cArticulo.js";
+
+    import vTiendaPlain from "./dist/views/vTiendaPlain.js";
+    import vArticuloPlain from "./dist/views/vArticuloPlain.js";
+
+    const vistaTienda = new vTiendaPlain();
+    const vistaArticulo = new vArticuloPlain();
+
+    const controladorArticulo = new cArticulo(vistaArticulo);
+    new cTienda(vistaTienda, controladorArticulo);
+  </script>
+</body>
+
+</html>
