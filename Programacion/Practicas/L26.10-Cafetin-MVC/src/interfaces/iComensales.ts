@@ -3,6 +3,7 @@ export default interface iComensales {
     reportarCliente(nombre: string, totalGastado: number): void;
     reportarEstado(datos: {
         clientesAtendidos: number;
+        totalGanancias: number;
         jugosDisponibles: number;
         empanadasDisponibles: number;
         pastelitosDisponibles: number;

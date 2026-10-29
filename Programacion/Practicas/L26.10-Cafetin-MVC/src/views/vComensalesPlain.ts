@@ -3,6 +3,7 @@ import iComensales from "../interfaces/iComensales.js";
 export default class vComensalesPlain implements iComensales {
     private botonNuevoCliente: HTMLButtonElement;
     private lblClientesAtendidos: HTMLElement;
+    private lblTotalGanancias: HTMLElement;
     private lblJugos: HTMLElement;
     private lblEmpanadas: HTMLElement;
     private lblPastelitos: HTMLElement;
@@ -12,6 +13,7 @@ export default class vComensalesPlain implements iComensales {
     constructor() {
         this.botonNuevoCliente = document.getElementById("body_btNuevoCliente") as HTMLButtonElement;
         this.lblClientesAtendidos = document.getElementById("body_lblClientesAtendidos") as HTMLElement;
+        this.lblTotalGanancias = document.getElementById("body_lblTotalGanancias") as HTMLElement;
         this.lblJugos = document.getElementById("body_lblJugos") as HTMLElement;
         this.lblEmpanadas = document.getElementById("body_lblEmpanadas") as HTMLElement;
         this.lblPastelitos = document.getElementById("body_lblPastelitos") as HTMLElement;
@@ -32,6 +34,7 @@ export default class vComensalesPlain implements iComensales {
 
     reportarEstado(datos: {
         clientesAtendidos: number;
+        totalGanancias: number;
         jugosDisponibles: number;
         empanadasDisponibles: number;
         pastelitosDisponibles: number;
@@ -39,6 +42,7 @@ export default class vComensalesPlain implements iComensales {
         exito: boolean;
     }): void {
         this.lblClientesAtendidos.textContent = String(datos.clientesAtendidos);
+        this.lblTotalGanancias.textContent = `${datos.totalGanancias} Bs`;
         this.lblJugos.textContent = String(datos.jugosDisponibles);
         this.lblEmpanadas.textContent = String(datos.empanadasDisponibles);
         this.lblPastelitos.textContent = String(datos.pastelitosDisponibles);

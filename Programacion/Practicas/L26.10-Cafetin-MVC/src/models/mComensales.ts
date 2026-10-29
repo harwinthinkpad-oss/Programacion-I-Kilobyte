@@ -5,17 +5,20 @@ export default class mComensales {
     private _acjugos: number;
     private _acempanadas: number;
     private _acpastelitos: number;
+    private _totalGanancias: number;
 
     constructor(
         actotalcliente: number = 0,
         acjugos: number = 10,
         acempanadas: number = 20,
         acpastelitos: number = 15,
+        totalGanancias: number = 0,
     ) {
         this._actotalcliente = actotalcliente;
         this._acjugos = acjugos;
         this._acempanadas = acempanadas;
         this._acpastelitos = acpastelitos;
+        this._totalGanancias = totalGanancias;
     }
 
     get actotalcliente(): number {
@@ -32,6 +35,10 @@ export default class mComensales {
 
     get acpastelitos(): number {
         return this._acpastelitos;
+    }
+
+    get totalGanancias(): number {
+        return this._totalGanancias;
     }
 
     processClientData(client: mClientes): boolean {
@@ -55,6 +62,7 @@ export default class mComensales {
         }
         if (client.jugo) this._acjugos -= 1;
         this._actotalcliente += 1;
+        this._totalGanancias += client.totalGastado;
         return true;
     }
 }

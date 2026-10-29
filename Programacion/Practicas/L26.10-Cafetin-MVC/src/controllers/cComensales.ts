@@ -35,6 +35,7 @@ export default class cComensales {
     private reportarEstado(mensaje: string, exito: boolean): void {
         this.vista.reportarEstado({
             clientesAtendidos: this.modelo.actotalcliente,
+            totalGanancias: this.modelo.totalGanancias,
             jugosDisponibles: this.modelo.acjugos,
             empanadasDisponibles: this.modelo.acempanadas,
             pastelitosDisponibles: this.modelo.acpastelitos,
