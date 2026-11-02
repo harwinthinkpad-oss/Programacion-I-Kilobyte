@@ -10,3 +10,4 @@ export default interface iClientes {
     botonaceptar(callback: () => void): void;
     botoncancelar(callback: () => void): void;
 }
+// uwuxys
