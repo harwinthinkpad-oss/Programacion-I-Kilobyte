@@ -1,4 +1,4 @@
-import mPersona from "./mPersona";
+import mPersona from "./mPersona.js";
 
 export default class mMayores {
     private _acPersonas: number;

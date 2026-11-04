@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personas mayores de edad - Bootstrap</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <main id="body" class="container py-5">
+    <h1>Personas mayores de edad (Bootstrap)</h1>
+    <div class="d-flex gap-2 my-3">
+      <button type="button" class="btn btn-primary" id="body_btNuevaPersona">Nueva persona</button>
+      <button type="button" class="btn btn-success" id="body_btFinalizar">Finalizar y calcular</button>
+    </div>
+
+    <h2 class="h4">Personas ingresadas</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Mayor de edad</th>
+          </tr>
+        </thead>
+        <tbody id="body_tbodyPersonas"></tbody>
+      </table>
+    </div>
+
+    <section id="body_resultado" class="alert alert-info" hidden aria-live="polite">
+      <h2 class="h4">Resultado</h2>
+      <p>Cantidad de personas: <strong id="body_lblCantidadPersonas">0</strong></p>
+      <p>Cantidad de personas mayor de edad: <strong id="body_lblCantidadMayores">0</strong></p>
+      <p class="mb-0">Porcentaje de personas mayor de edad: <strong id="body_lblPorcentajeMayores">0%</strong></p>
+    </section>
+  </main>
+
+  <div class="modal fade" id="persona" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5">Ingresar persona</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <label class="form-label" for="persona_inNombre">Nombre:</label>
+          <input type="text" class="form-control mb-3" id="persona_inNombre" autocomplete="name">
+          <label class="form-label" for="persona_inEdad">Edad:</label>
+          <input type="number" class="form-control" id="persona_inEdad" min="0" step="1">
+          <p id="persona_error" class="text-danger mt-2 mb-0" role="alert"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="persona_btCancelar" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="persona_btAceptar">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import ControladorMayores from "./dist/controllers/c/ControladorMayores.js";
+    import ControladorPersona from "./dist/controllers/c/ControladorPersona.js";
+    import MayoresVistaBootstrap from "./dist/views/v/MayoresVistaBootstrap.js";
+    import PersonaVistaBootstrap from "./dist/views/v/PersonaVistaBootstrap.js";
+
+    const vistaMayores = new MayoresVistaBootstrap();
+    const vistaPersona = new PersonaVistaBootstrap();
+    const controladorPersona = new ControladorPersona(vistaPersona);
+    new ControladorMayores(vistaMayores, controladorPersona);
+  </script>
+</body>
+
+</html>

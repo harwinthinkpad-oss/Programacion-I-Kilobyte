@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personas mayores de edad - HTML Plano</title>
+</head>
+
+<body>
+  <main id="body">
+    <h1>Personas mayores de edad (HTML Plano)</h1>
+    <button type="button" id="body_btNuevaPersona">Nueva persona</button>
+    <button type="button" id="body_btFinalizar">Finalizar y calcular</button>
+
+    <h2>Personas ingresadas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Mayor de edad</th>
+        </tr>
+      </thead>
+      <tbody id="body_tbodyPersonas"></tbody>
+    </table>
+
+    <section id="body_resultado" hidden aria-live="polite">
+      <h2>Resultado</h2>
+      <p>Cantidad de personas: <span id="body_lblCantidadPersonas">0</span></p>
+      <p>Cantidad de personas mayor de edad: <span id="body_lblCantidadMayores">0</span></p>
+      <p>Porcentaje de personas mayor de edad: <span id="body_lblPorcentajeMayores">0%</span></p>
+    </section>
+  </main>
+
+  <section id="persona" hidden style="margin-top: 20px; border: 1px solid #ccc; padding: 15px; width: 300px;">
+    <h2>Ingresar persona</h2>
+    <div>
+      <label for="persona_inNombre">Nombre:</label>
+      <input type="text" id="persona_inNombre" autocomplete="name">
+    </div>
+    <div>
+      <label for="persona_inEdad">Edad:</label>
+      <input type="number" id="persona_inEdad" min="0" step="1">
+    </div>
+    <p id="persona_error" role="alert"></p>
+    <button type="button" id="persona_btCancelar">Cancelar</button>
+    <button type="button" id="persona_btAceptar">Aceptar</button>
+  </section>
+
+  <script type="module">
+    import ControladorMayores from "./dist/controllers/c/ControladorMayores.js";
+    import ControladorPersona from "./dist/controllers/c/ControladorPersona.js";
+    import MayoresVistaPlain from "./dist/views/v/MayoresVistaPlain.js";
+    import PersonaVistaPlain from "./dist/views/v/PersonaVistaPlain.js";
+
+    const vistaMayores = new MayoresVistaPlain();
+    const vistaPersona = new PersonaVistaPlain();
+    const controladorPersona = new ControladorPersona(vistaPersona);
+    new ControladorMayores(vistaMayores, controladorPersona);
+  </script>
+</body>
+
+</html>
