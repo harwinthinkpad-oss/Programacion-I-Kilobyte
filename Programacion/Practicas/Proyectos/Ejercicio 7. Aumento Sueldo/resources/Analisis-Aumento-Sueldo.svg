@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1250" viewBox="0 0 1600 1250" role="img" aria-labelledby="title description">
+  <title id="title">Aumento de sueldo: análisis y diseño</title>
+  <desc id="description">Infografía con los sueldos, tipos de trabajador, aumentos, requerimientos, resultados y lógica de las clases Trabajador y Empresa.</desc>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#e9edf0" stroke-width="1"/></pattern>
+  </defs>
+  <rect width="1600" height="1250" fill="#f5f7f6"/>
+  <rect width="1600" height="1250" fill="url(#grid)" opacity=".55"/>
+  <rect width="1600" height="18" fill="#157a72"/>
+
+  <text x="80" y="76" fill="#157a72" font-family="Arial, sans-serif" font-size="19" font-weight="700" letter-spacing="2">ANÁLISIS Y DISEÑO · PROGRAMACIÓN ORIENTADA A OBJETOS</text>
+  <text x="80" y="145" fill="#172a36" font-family="Georgia, serif" font-size="58" font-weight="700">Aumento de sueldo</text>
+  <text x="82" y="187" fill="#52636b" font-family="Arial, sans-serif" font-size="24">La empresa calcula los aumentos quincenales según el tipo de trabajador.</text>
+  <rect x="1316" y="86" width="204" height="55" rx="8" fill="#172a36"/>
+  <text x="1418" y="121" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="19" font-weight="700">CASO · EMPRESA</text>
+
+  <rect x="80" y="226" width="700" height="602" rx="12" fill="#ffffff" stroke="#d7dfdf" stroke-width="2"/>
+  <rect x="80" y="226" width="700" height="70" rx="12" fill="#172a36"/>
+  <path d="M80 284h700v12H80z" fill="#172a36"/>
+  <text x="112" y="271" fill="#ffffff" font-family="Arial, sans-serif" font-size="27" font-weight="700">01  ·  Datos y cálculo individual</text>
+  <text x="108" y="333" fill="#52636b" font-family="Arial, sans-serif" font-size="17" font-weight="700">TRABAJADOR</text>
+  <text x="278" y="333" fill="#52636b" font-family="Arial, sans-serif" font-size="17" font-weight="700">TIPO</text>
+  <text x="375" y="333" fill="#52636b" font-family="Arial, sans-serif" font-size="17" font-weight="700">SUELDO</text>
+  <text x="510" y="333" fill="#52636b" font-family="Arial, sans-serif" font-size="17" font-weight="700">TASA</text>
+  <text x="624" y="333" fill="#52636b" font-family="Arial, sans-serif" font-size="17" font-weight="700">AUMENTO</text>
+  <path d="M108 350H752" stroke="#cad4d5" stroke-width="2"/>
+
+  <g font-family="Arial, sans-serif" font-size="22" fill="#172a36">
+    <text x="112" y="402">Juan</text><text x="291" y="402">1</text><text x="392" y="402">$100</text><text x="518" y="402">20%</text><text x="650" y="402" fill="#157a72" font-weight="700">$20</text>
+    <text x="112" y="462">Ana</text><text x="291" y="462">1</text><text x="392" y="462">$120</text><text x="518" y="462">20%</text><text x="650" y="462" fill="#157a72" font-weight="700">$24</text>
+    <text x="112" y="522">Lin</text><text x="291" y="522">2</text><text x="392" y="522">$200</text><text x="518" y="522">10%</text><text x="650" y="522" fill="#157a72" font-weight="700">$20</text>
+    <text x="112" y="582">Mary</text><text x="291" y="582">1</text><text x="392" y="582">$50</text><text x="518" y="582">20%</text><text x="650" y="582" fill="#157a72" font-weight="700">$10</text>
+    <text x="112" y="642">Carlos</text><text x="291" y="642">2</text><text x="392" y="642">$150</text><text x="518" y="642">10%</text><text x="650" y="642" fill="#157a72" font-weight="700">$15</text>
+  </g>
+  <path d="M108 672H752" stroke="#cad4d5" stroke-width="2"/>
+  <rect x="100" y="691" width="660" height="64" rx="7" fill="#e6f3f0"/>
+  <text x="124" y="731" fill="#172a36" font-family="Arial, sans-serif" font-size="21" font-weight="700">Total adicional</text>
+  <text x="712" y="735" text-anchor="end" fill="#157a72" font-family="Georgia, serif" font-size="33" font-weight="700">$89</text>
+  <text x="112" y="790" fill="#52636b" font-family="Arial, sans-serif" font-size="17">Tipo 1 = obrero · Tipo 2 = administrativo</text>
+  <text x="112" y="815" fill="#52636b" font-family="Arial, sans-serif" font-size="16">Aumento = sueldo × tasa correspondiente</text>
+
+  <rect x="812" y="226" width="708" height="250" rx="12" fill="#ffffff" stroke="#d7dfdf" stroke-width="2"/>
+  <text x="848" y="273" fill="#157a72" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="1">02  ·  REQUERIMIENTOS</text>
+  <circle cx="858" cy="326" r="6" fill="#d5893d"/>
+  <text x="880" y="334" fill="#172a36" font-family="Arial, sans-serif" font-size="25">Calcular el aumento individual de cada trabajador.</text>
+  <circle cx="858" cy="381" r="6" fill="#d5893d"/>
+  <text x="880" y="389" fill="#172a36" font-family="Arial, sans-serif" font-size="25">Calcular el monto adicional total que pagará</text>
+  <text x="880" y="423" fill="#172a36" font-family="Arial, sans-serif" font-size="25">la empresa en la próxima quincena.</text>
+  <text x="848" y="454" fill="#52636b" font-family="Arial, sans-serif" font-size="17">Obrero: 20%  ·  Administrativo: 10%</text>
+
+  <rect x="812" y="500" width="708" height="328" rx="12" fill="#172a36"/>
+  <text x="848" y="548" fill="#9bd5c8" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="1">03  ·  RESULTADOS</text>
+  <text x="848" y="594" fill="#ffffff" font-family="Arial, sans-serif" font-size="23">Monto adicional total</text>
+  <text x="848" y="690" fill="#ffffff" font-family="Georgia, serif" font-size="76" font-weight="700">$89</text>
+  <text x="848" y="740" fill="#c5d2d3" font-family="Arial, sans-serif" font-size="18">Total de la próxima quincena</text>
+  <path d="M1096 574v205" stroke="#45606a" stroke-width="2"/>
+  <text x="1132" y="594" fill="#ffffff" font-family="Arial, sans-serif" font-size="23">Aumento por trabajador</text>
+  <g fill="#dce6e6" font-family="Arial, sans-serif" font-size="20">
+    <text x="1132" y="637">Juan</text><text x="1468" y="637" text-anchor="end" fill="#9bd5c8" font-weight="700">$20</text>
+    <text x="1132" y="673">Ana</text><text x="1468" y="673" text-anchor="end" fill="#9bd5c8" font-weight="700">$24</text>
+    <text x="1132" y="709">Lin</text><text x="1468" y="709" text-anchor="end" fill="#9bd5c8" font-weight="700">$20</text>
+    <text x="1132" y="745">Mary</text><text x="1468" y="745" text-anchor="end" fill="#9bd5c8" font-weight="700">$10</text>
+    <text x="1132" y="781">Carlos</text><text x="1468" y="781" text-anchor="end" fill="#9bd5c8" font-weight="700">$15</text>
+  </g>
+
+  <rect x="80" y="866" width="700" height="302" rx="12" fill="#ffffff" stroke="#d7dfdf" stroke-width="2"/>
+  <text x="112" y="912" fill="#157a72" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="1">04  ·  DISEÑO DE CLASES</text>
+  <text x="112" y="962" fill="#172a36" font-family="Georgia, serif" font-size="30" font-weight="700">Trabajador</text>
+  <text x="112" y="999" fill="#52636b" font-family="Arial, sans-serif" font-size="21">nombre · tipo · sueldo</text>
+  <text x="112" y="1034" fill="#157a72" font-family="Arial, sans-serif" font-size="21" font-weight="700">aumento() calcula el porcentaje individual</text>
+  <path d="M112 1055H744" stroke="#d7dfdf" stroke-width="2"/>
+  <text x="112" y="1094" fill="#172a36" font-family="Georgia, serif" font-size="30" font-weight="700">Empresa</text>
+  <text x="112" y="1131" fill="#52636b" font-family="Arial, sans-serif" font-size="20">_acMontoAdicional · procesarTrabajador() · totalMontoAdicional()</text>
+
+  <rect x="812" y="866" width="708" height="302" rx="12" fill="#e8f1ef" stroke="#c5d9d5" stroke-width="2"/>
+  <text x="848" y="912" fill="#157a72" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="1">05  ·  LÓGICA ESENCIAL</text>
+  <rect x="848" y="938" width="636" height="74" rx="7" fill="#ffffff"/>
+  <text x="874" y="970" fill="#172a36" font-family="Arial, sans-serif" font-size="21" font-weight="700">trabajador.aumento()</text>
+  <text x="874" y="997" fill="#157a72" font-family="Arial, sans-serif" font-size="19">tipo 1 → sueldo × 0.20 · tipo 2 → sueldo × 0.10</text>
+  <text x="848" y="1051" fill="#172a36" font-family="Arial, sans-serif" font-size="20">procesarTrabajador(trabajador)</text>
+  <text x="874" y="1085" fill="#172a36" font-family="Arial, sans-serif" font-size="19">acMontoAdicional += trabajador.aumento()</text>
+  <text x="848" y="1130" fill="#52636b" font-family="Arial, sans-serif" font-size="18">totalMontoAdicional() devuelve el acumulado.</text>
+
+  <text x="80" y="1210" fill="#52636b" font-family="Arial, sans-serif" font-size="16">Cálculos basados en los cinco trabajadores del ejemplo.</text>
+  <text x="1520" y="1210" text-anchor="end" fill="#157a72" font-family="Arial, sans-serif" font-size="16" font-weight="700">TOTAL ADICIONAL = $89</text>
+</svg>
