@@ -4,6 +4,7 @@ export default interface ITrabajadorVista {
   get nombre(): string;
   get tipo(): TipoTrabajador;
   get sueldo(): number;
+  get antiguedad(): number;
   mostrar(): void;
   ocultar(): void;
   onAceptar(callback: () => void): void;

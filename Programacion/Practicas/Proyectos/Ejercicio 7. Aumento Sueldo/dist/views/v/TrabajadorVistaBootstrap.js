@@ -2,6 +2,7 @@ export default class TrabajadorVistaBootstrap {
     inNombre;
     slTipo;
     inSueldo;
+    inAntiguedad;
     btAceptar;
     btCancelar;
     modal;
@@ -9,6 +10,7 @@ export default class TrabajadorVistaBootstrap {
         this.inNombre = document.getElementById("trabajador_inNombre");
         this.slTipo = document.getElementById("trabajador_slTipo");
         this.inSueldo = document.getElementById("trabajador_inSueldo");
+        this.inAntiguedad = document.getElementById("trabajador_inAntiguedad");
         this.btAceptar = document.getElementById("trabajador_btAceptar");
         this.btCancelar = document.getElementById("trabajador_btCancelar");
         const elementoModal = document.getElementById("trabajador");
@@ -26,6 +28,9 @@ export default class TrabajadorVistaBootstrap {
     get sueldo() {
         return +this.inSueldo.value;
     }
+    get antiguedad() {
+        return +this.inAntiguedad.value;
+    }
     onAceptar(callback) {
         this.btAceptar.onclick = callback;
     }
@@ -36,6 +41,7 @@ export default class TrabajadorVistaBootstrap {
         this.inNombre.value = "";
         this.slTipo.value = "1";
         this.inSueldo.value = "";
+        this.inAntiguedad.value = "";
         this.modal.show();
     }
     ocultar() {

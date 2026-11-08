@@ -14,9 +14,10 @@ export default class ControladorAumentoSueldo {
                 return;
             }
             this.empresa.procesarTrabajador(trabajador);
-            this.vista.agregarAumento(trabajador.nombre, trabajador.tipo, trabajador.aumento());
+            this.vista.agregarAumento(trabajador.nombre, trabajador.tipo, trabajador.antiguedad, trabajador.aumento());
             this.vista.reportar({
                 totalMontoAdicional: this.empresa.totalMontoAdicional(),
+                totalAniosServicio: this.empresa.totalAniosServicio(),
             });
         });
     }

@@ -23,10 +23,12 @@ export default class ControladorAumentoSueldo {
       this.vista.agregarAumento(
         trabajador.nombre,
         trabajador.tipo,
+        trabajador.antiguedad,
         trabajador.aumento(),
       );
       this.vista.reportar({
         totalMontoAdicional: this.empresa.totalMontoAdicional(),
+        totalAniosServicio: this.empresa.totalAniosServicio(),
       });
     });
   }

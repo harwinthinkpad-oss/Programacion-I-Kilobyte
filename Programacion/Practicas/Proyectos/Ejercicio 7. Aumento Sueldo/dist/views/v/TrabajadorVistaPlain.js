@@ -3,6 +3,7 @@ export default class TrabajadorVistaPlain {
     inNombre;
     slTipo;
     inSueldo;
+    inAntiguedad;
     btAceptar;
     btCancelar;
     constructor() {
@@ -10,6 +11,7 @@ export default class TrabajadorVistaPlain {
         this.inNombre = document.getElementById("trabajador_inNombre");
         this.slTipo = document.getElementById("trabajador_slTipo");
         this.inSueldo = document.getElementById("trabajador_inSueldo");
+        this.inAntiguedad = document.getElementById("trabajador_inAntiguedad");
         this.btAceptar = document.getElementById("trabajador_btAceptar");
         this.btCancelar = document.getElementById("trabajador_btCancelar");
     }
@@ -22,6 +24,9 @@ export default class TrabajadorVistaPlain {
     get sueldo() {
         return +this.inSueldo.value;
     }
+    get antiguedad() {
+        return +this.inAntiguedad.value;
+    }
     onAceptar(callback) {
         this.btAceptar.onclick = callback;
     }
@@ -32,6 +37,7 @@ export default class TrabajadorVistaPlain {
         this.inNombre.value = "";
         this.slTipo.value = "1";
         this.inSueldo.value = "";
+        this.inAntiguedad.value = "";
         this.vista.hidden = false;
     }
     ocultar() {
