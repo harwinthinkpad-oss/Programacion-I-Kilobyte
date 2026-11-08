@@ -6,6 +6,7 @@ export default class TrabajadorVistaPlain implements ITrabajadorVista {
   private readonly inNombre: HTMLInputElement;
   private readonly slTipo: HTMLSelectElement;
   private readonly inSueldo: HTMLInputElement;
+  private readonly inAntiguedad: HTMLInputElement;
   private readonly btAceptar: HTMLButtonElement;
   private readonly btCancelar: HTMLButtonElement;
 
@@ -19,6 +20,9 @@ export default class TrabajadorVistaPlain implements ITrabajadorVista {
     ) as HTMLSelectElement;
     this.inSueldo = document.getElementById(
       "trabajador_inSueldo",
+    ) as HTMLInputElement;
+    this.inAntiguedad = document.getElementById(
+      "trabajador_inAntiguedad",
     ) as HTMLInputElement;
     this.btAceptar = document.getElementById(
       "trabajador_btAceptar",
@@ -40,6 +44,10 @@ export default class TrabajadorVistaPlain implements ITrabajadorVista {
     return +this.inSueldo.value;
   }
 
+  get antiguedad(): number {
+    return +this.inAntiguedad.value;
+  }
+
   onAceptar(callback: () => void): void {
     this.btAceptar.onclick = callback;
   }
@@ -52,6 +60,7 @@ export default class TrabajadorVistaPlain implements ITrabajadorVista {
     this.inNombre.value = "";
     this.slTipo.value = "1";
     this.inSueldo.value = "";
+    this.inAntiguedad.value = "";
     this.vista.hidden = false;
   }
 

@@ -12,6 +12,7 @@ export default class TrabajadorVistaBootstrap implements ITrabajadorVista {
   private readonly inNombre: HTMLInputElement;
   private readonly slTipo: HTMLSelectElement;
   private readonly inSueldo: HTMLInputElement;
+  private readonly inAntiguedad: HTMLInputElement;
   private readonly btAceptar: HTMLButtonElement;
   private readonly btCancelar: HTMLButtonElement;
   private readonly modal: InstanceType<typeof bootstrap.Modal>;
@@ -25,6 +26,9 @@ export default class TrabajadorVistaBootstrap implements ITrabajadorVista {
     ) as HTMLSelectElement;
     this.inSueldo = document.getElementById(
       "trabajador_inSueldo",
+    ) as HTMLInputElement;
+    this.inAntiguedad = document.getElementById(
+      "trabajador_inAntiguedad",
     ) as HTMLInputElement;
     this.btAceptar = document.getElementById(
       "trabajador_btAceptar",
@@ -52,6 +56,10 @@ export default class TrabajadorVistaBootstrap implements ITrabajadorVista {
     return +this.inSueldo.value;
   }
 
+  get antiguedad(): number {
+    return +this.inAntiguedad.value;
+  }
+
   onAceptar(callback: () => void): void {
     this.btAceptar.onclick = callback;
   }
@@ -64,6 +72,7 @@ export default class TrabajadorVistaBootstrap implements ITrabajadorVista {
     this.inNombre.value = "";
     this.slTipo.value = "1";
     this.inSueldo.value = "";
+    this.inAntiguedad.value = "";
     this.modal.show();
   }
 

@@ -2,10 +2,12 @@ export default class Trabajador {
     _nombre;
     _tipo;
     _sueldo;
-    constructor(nombre, tipo, sueldo) {
+    _antiguedad;
+    constructor(nombre, tipo, sueldo, antiguedad) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.sueldo = sueldo;
+        this.antiguedad = antiguedad;
     }
     set nombre(nombre) {
         this._nombre = nombre;
@@ -27,6 +29,12 @@ export default class Trabajador {
     }
     get sueldo() {
         return this._sueldo;
+    }
+    set antiguedad(antiguedad) {
+        this._antiguedad = +antiguedad;
+    }
+    get antiguedad() {
+        return this._antiguedad;
     }
     aumento() {
         return this._sueldo * (this._tipo === 1 ? 0.2 : 0.1);

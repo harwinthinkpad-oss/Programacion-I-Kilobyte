@@ -17,11 +17,15 @@
     <div class="alert alert-info">
       El monto adicional total es: $<span id="body_lblTotalMontoAdicional" class="fw-bold">0</span>
     </div>
+    <div class="alert alert-secondary">
+      Los años de servicio acumulados son: <span id="body_lblTotalAniosServicio" class="fw-bold">0</span>
+    </div>
     <table class="table table-striped">
       <thead>
         <tr>
           <th>Nombre</th>
           <th>Tipo de trabajador</th>
+          <th>Años de servicio</th>
           <th>Aumento</th>
         </tr>
       </thead>
@@ -45,6 +49,8 @@
           </select>
           <label class="form-label">Sueldo actual:</label>
           <input type="number" class="form-control" id="trabajador_inSueldo">
+          <label class="form-label">Años de servicio:</label>
+          <input type="number" class="form-control" id="trabajador_inAntiguedad" min="0" step="1">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" id="trabajador_btCancelar">Cancelar</button>

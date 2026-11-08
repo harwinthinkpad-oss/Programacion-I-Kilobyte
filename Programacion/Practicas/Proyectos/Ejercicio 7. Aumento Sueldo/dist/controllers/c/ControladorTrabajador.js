@@ -15,7 +15,7 @@ export default class ControladorTrabajador {
         const callback = this.callback;
         this.callback = null;
         if (callback !== null) {
-            callback(new Trabajador(this.vista.nombre, this.vista.tipo, this.vista.sueldo));
+            callback(new Trabajador(this.vista.nombre, this.vista.tipo, this.vista.sueldo, this.vista.antiguedad));
         }
         this.vista.ocultar();
     }
