@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ingresos de personas - HTML plano</title>
+</head>
+
+<body>
+  <main id="body">
+    <h1>Ingresos de personas</h1>
+    <p>Registra personas y consulta el ingreso menor y el promedio de ingresos.</p>
+    <button type="button" id="btNuevaPersona">Nueva persona</button>
+
+    <section aria-labelledby="resultados_titulo" aria-live="polite">
+      <h2 id="resultados_titulo">Resultados</h2>
+      <p>Monto del ingreso menor: <strong id="lblIngresoMenor">-</strong></p>
+      <p>Ingreso promedio: <strong id="lblPromedioIngreso">-</strong></p>
+    </section>
+
+    <section id="formPersona" hidden aria-labelledby="formPersona_titulo">
+      <h2 id="formPersona_titulo">Ingresar persona</h2>
+      <p>
+        <label for="inNombre">Nombre:</label>
+        <input type="text" id="inNombre" autocomplete="name" maxlength="100">
+      </p>
+      <p>
+        <label for="inIngresos">Ingreso:</label>
+        <input type="number" id="inIngresos" min="0" step="any">
+      </p>
+      <p id="mensajeError" role="alert" aria-live="assertive"></p>
+      <button type="button" id="btCancelar">Cancelar</button>
+      <button type="button" id="btAceptar">Aceptar</button>
+    </section>
+  </main>
+
+  <script type="module">
+    import cIngresos from "./dist/controllers/cIngresos.js";
+    import cPersona from "./dist/controllers/cPersona.js";
+    import vIngresosPlain from "./dist/views/vIngresosPlain.js";
+    import vPersonaPlain from "./dist/views/vPersonaPlain.js";
+
+    const vistaIngresos = new vIngresosPlain();
+    const vistaPersona = new vPersonaPlain();
+    const controladorPersona = new cPersona(vistaPersona);
+    new cIngresos(vistaIngresos, controladorPersona);
+  </script>
+</body>
+</html>
