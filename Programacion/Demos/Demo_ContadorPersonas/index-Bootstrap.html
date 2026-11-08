@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración de la página y estilos de Bootstrap 5.3. -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de personas - Bootstrap</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Contenedor principal con el formulario de captura. -->
+  <main class="container py-5">
+    <h1>Contador de personas</h1>
+    <p class="text-body-secondary">Registra personas y consulta al final cuántas mujeres y hombres se procesaron.</p>
+
+    <form id="formPersona" class="card">
+      <fieldset id="camposPersona" class="card-body">
+        <legend class="h5">Datos de la persona</legend>
+        <div class="mb-3">
+          <label class="form-label" for="inNombre">Nombre:</label>
+          <input type="text" class="form-control" id="inNombre" autocomplete="name" maxlength="100">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="inSexo">Sexo:</label>
+          <select id="inSexo" class="form-select">
+            <option value="">Selecciona una opción</option>
+            <option value="1">F - Femenino</option>
+            <option value="2">M - Masculino</option>
+          </select>
+        </div>
+        <p id="mensajePersona" class="d-none" role="alert" aria-live="assertive"></p>
+        <button type="button" id="btRegistrar" class="btn btn-primary">Registrar persona</button>
+      </fieldset>
+    </form>
+
+    <!-- Los tres indicadores reflejan cada registro sin esperar al reporte final. -->
+    <section class="mt-4" aria-live="polite">
+      <h2 class="h4">Captura</h2>
+      <div class="row g-3">
+        <div class="col-sm-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title h6">Personas registradas</h3>
+              <p class="card-text"><strong id="lblTotalProcesadas">0</strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title h6">Mujeres registradas</h3>
+              <p class="card-text"><strong id="lblMujeresProcesadas">0</strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title h6">Hombres registrados</h3>
+              <p class="card-text"><strong id="lblHombresProcesados">0</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p id="mensajeFinal" class="d-none" role="alert" aria-live="assertive"></p>
+      <button type="button" id="btFinalizar" class="btn btn-success">Finalizar y reportar</button>
+    </section>
+
+    <!-- Las tarjetas resumen permanecen ocultas hasta cerrar la captura. -->
+    <section id="resultados" class="mt-4" hidden aria-labelledby="tituloResultados" aria-live="polite">
+      <h2 id="tituloResultados" class="h4">Resultados finales</h2>
+      <div class="row g-3">
+        <div class="col-sm-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title h6">Total procesado</h3>
+              <p class="card-text"><strong id="lblTotal">0</strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title h6">Mujeres</h3>
+              <p class="card-text"><strong id="lblMujeres">0</strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title h6">Hombres</h3>
+              <p class="card-text"><strong id="lblHombres">0</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Inicializa el mismo flujo MVC que utiliza la vista HTML plano. -->
+  <script type="module">
+    import cContador from "./dist/controllers/cContador.js";
+    import cPersona from "./dist/controllers/cPersona.js";
+    import vContadorBootstrap from "./dist/views/vContadorBootstrap.js";
+    import vPersonaBootstrap from "./dist/views/vPersonaBootstrap.js";
+
+    const vistaContador = new vContadorBootstrap();
+    const vistaPersonas = new vPersonaBootstrap();
+    const controladorContador = new cContador(vistaContador, vistaPersonas);
+    new cPersona(vistaPersonas, (persona) => controladorContador.procesarPersona(persona));
+  </script>
+</body>
+</html>

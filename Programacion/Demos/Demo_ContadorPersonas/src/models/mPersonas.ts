@@ -1,16 +1,23 @@
+// Modelo de una persona; el sexo usa 1 para femenino y 2 para masculino.
 export default class mPersonas {
-    private _edad: number
+    // Código numérico del sexo seleccionado.
+    private _sexo: number
+
+    // Nombre de la persona registrada.
     private _nombre: string
 
-    constructor(edad: number, nombre: string) {
-        this._edad = edad
+    // Guarda los datos de una persona nueva.
+    constructor(sexo: number, nombre: string) {
+        this._sexo = sexo
         this._nombre = nombre
     }
 
-    get edad(): number {
-        return this._edad
+    // Permite consultar el código de sexo sin modificarlo.
+    get sexo(): number {
+        return this._sexo
     }
 
+    // Permite consultar el nombre sin modificarlo.
     get nombre(): string {
         return this._nombre
     }
