@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración básica para caracteres y pantallas pequeñas. -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de personas - HTML plano</title>
+</head>
+<body>
+  <!-- El formulario captura los datos de una persona por vez. -->
+  <main>
+    <h1>Contador de personas</h1>
+    <p>Registra personas y consulta al final cuántas mujeres y hombres se procesaron.</p>
+
+    <form id="formPersona">
+      <fieldset id="camposPersona">
+        <legend>Datos de la persona</legend>
+        <p>
+          <label for="inNombre">Nombre:</label>
+          <input type="text" id="inNombre" autocomplete="name" maxlength="100">
+        </p>
+        <p>
+          <label for="inSexo">Sexo:</label>
+          <select id="inSexo">
+            <option value="">Selecciona una opción</option>
+            <option value="1">F - Femenino</option>
+            <option value="2">M - Masculino</option>
+          </select>
+        </p>
+        <p id="mensajePersona" role="alert" aria-live="assertive"></p>
+        <button type="button" id="btRegistrar">Registrar persona</button>
+      </fieldset>
+    </form>
+
+    <!-- Estos tres indicadores cambian con cada registro sin borrar los acumuladores. -->
+    <section aria-live="polite">
+      <h2>Captura</h2>
+      <p>Personas registradas: <strong id="lblTotalProcesadas">0</strong></p>
+      <p>Mujeres registradas: <strong id="lblMujeresProcesadas">0</strong></p>
+      <p>Hombres registrados: <strong id="lblHombresProcesados">0</strong></p>
+      <p id="mensajeFinal" role="alert" aria-live="assertive"></p>
+      <button type="button" id="btFinalizar">Finalizar y reportar</button>
+    </section>
+
+    <!-- El controlador revela esta sección cuando se solicita el reporte final. -->
+    <section id="resultados" hidden aria-labelledby="tituloResultados" aria-live="polite">
+      <h2 id="tituloResultados">Resultados finales</h2>
+      <p>Total procesado: <strong id="lblTotal">0</strong></p>
+      <p>Mujeres: <strong id="lblMujeres">0</strong></p>
+      <p>Hombres: <strong id="lblHombres">0</strong></p>
+    </section>
+  </main>
+
+  <!-- Conecta los controladores con las vistas escritas en TypeScript compilado. -->
+  <script type="module">
+    import cContador from "./dist/controllers/cContador.js";
+    import cPersona from "./dist/controllers/cPersona.js";
+    import vContadorPlain from "./dist/views/vContadorPlain.js";
+    import vPersonaPlain from "./dist/views/vPersonaPlain.js";
+
+    const vistaContador = new vContadorPlain();
+    const vistaPersonas = new vPersonaPlain();
+    const controladorContador = new cContador(vistaContador, vistaPersonas);
+    new cPersona(vistaPersonas, (persona) => controladorContador.procesarPersona(persona));
+  </script>
+</body>
+</html>

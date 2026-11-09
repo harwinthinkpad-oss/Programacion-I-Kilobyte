@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventas de vendedores</title>
+</head>
+<body>
+    <main>
+        <h1>Registro de ventas</h1>
+        <button id="tienda_btNuevoVendedor" type="button">Agregar vendedor</button>
+
+        <h2>Resultados</h2>
+        <p>Ventas mayores de 100: <strong id="tienda_lblVentasMayores">0</strong></p>
+        <p>Ventas de 100 o menos: <strong id="tienda_lblVentasMenores">0</strong></p>
+        <p>Monto total de ventas: <strong id="tienda_lblMontoTotal">0.00</strong></p>
+
+        <section id="vendedor" hidden>
+            <h2>Datos del vendedor</h2>
+            <form id="vendedor_form">
+                <p>
+                    <label for="vendedor_inNombre">Nombre:</label>
+                    <input id="vendedor_inNombre" name="nombre" type="text" required>
+                </p>
+                <p>
+                    <label for="vendedor_inMontoVenta">Monto de venta:</label>
+                    <input id="vendedor_inMontoVenta" name="montoVenta" type="number" min="0" step="0.01" required>
+                </p>
+                <button id="vendedor_btCancelar" type="button">Cancelar</button>
+                <button type="submit">Aceptar</button>
+            </form>
+        </section>
+    </main>
+
+    <script type="module">
+        import cTienda from "./dist/controllers/cTienda.js";
+        import cVendedor from "./dist/controllers/cVendedor.js";
+        import vTiendaPlain from "./dist/views/vTiendaPlain.js";
+        import vVendedorPlain from "./dist/views/vVendedorPlain.js";
+
+        const vistaTienda = new vTiendaPlain();
+        const vistaVendedor = new vVendedorPlain();
+        const controladorVendedor = new cVendedor(vistaVendedor);
+        new cTienda(vistaTienda, controladorVendedor);
+    </script>
+</body>
+</html>
