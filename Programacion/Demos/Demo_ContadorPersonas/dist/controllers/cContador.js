@@ -23,6 +23,7 @@ export default class cContador {
             total: this.contador.returnContador(),
             mujeres: this.contador.returnAcPersonasFemeninas(),
             hombres: this.contador.returnAcPersonasMasculinas(),
+            edadPromedio: this.contador.returnEdadPromedio(),
         });
         this.vista.mostrarError("");
     }
@@ -40,6 +41,7 @@ export default class cContador {
             total: this.contador.returnContador(),
             mujeres: this.contador.returnAcPersonasFemeninas(),
             hombres: this.contador.returnAcPersonasMasculinas(),
+            edadPromedio: this.contador.returnEdadPromedio(),
         });
     }
 }

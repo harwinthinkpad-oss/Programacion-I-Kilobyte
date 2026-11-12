@@ -3,6 +3,7 @@ export interface IPersonas {
     // Datos escritos y seleccionados en el formulario.
     readonly nombre: string;
     readonly sexo: number;
+    readonly edad: number;
 
     // Conecta el botón Registrar con el controlador sin enviar el formulario.
     onRegistrar(callback: () => void): void;

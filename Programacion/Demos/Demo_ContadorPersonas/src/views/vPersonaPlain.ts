@@ -7,9 +7,9 @@ export default class vPersonaPlain implements IPersonas {
     private readonly campos = document.getElementById("camposPersona") as HTMLFieldSetElement;
     private readonly entradaNombre = document.getElementById("inNombre") as HTMLInputElement;
     private readonly entradaSexo = document.getElementById("inSexo") as HTMLSelectElement;
+    private readonly entradaEdad = document.getElementById("inEdad") as HTMLInputElement;
     private readonly mensajeError = document.getElementById("mensajePersona") as HTMLElement;
     private readonly botonRegistrar = document.getElementById("btRegistrar") as HTMLButtonElement;
-
     // Recorta espacios al principio y al final para no aceptar un nombre en blanco.
     get nombre(): string {
         return this.entradaNombre.value.trim();
@@ -18,6 +18,10 @@ export default class vPersonaPlain implements IPersonas {
     // Convierte las opciones F=1 y M=2 al número que espera el modelo.
     get sexo(): number {
         return this.entradaSexo.value === "" ? Number.NaN : Number(this.entradaSexo.value);
+    }
+
+    get edad(): number {
+        return this.entradaEdad.value === "" ? Number.NaN : Number(this.entradaEdad.value);
     }
 
     // El clic registra de forma explícita; cualquier submit implícito se cancela para evitar recargas.

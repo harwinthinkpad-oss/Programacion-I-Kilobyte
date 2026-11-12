@@ -6,10 +6,13 @@ export default class mPersonas {
     // Nombre de la persona registrada.
     private _nombre: string
 
+    private _edad: number
+
     // Guarda los datos de una persona nueva.
-    constructor(sexo: number, nombre: string) {
+    constructor(sexo: number, nombre: string, edad: number) {
         this._sexo = sexo
         this._nombre = nombre
+        this._edad = edad
     }
 
     // Permite consultar el código de sexo sin modificarlo.
@@ -20,5 +23,10 @@ export default class mPersonas {
     // Permite consultar el nombre sin modificarlo.
     get nombre(): string {
         return this._nombre
+    }
+
+    // Permite consultar la edad sin modificarla.
+    get edad(): number {
+        return this._edad
     }
 }

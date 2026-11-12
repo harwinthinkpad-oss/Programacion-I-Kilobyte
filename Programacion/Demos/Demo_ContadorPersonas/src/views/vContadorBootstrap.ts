@@ -7,12 +7,14 @@ export default class vContadorBootstrap implements IContador {
     private readonly totalProcesadas = document.getElementById("lblTotalProcesadas") as HTMLElement;
     private readonly mujeresProcesadas = document.getElementById("lblMujeresProcesadas") as HTMLElement;
     private readonly hombresProcesados = document.getElementById("lblHombresProcesados") as HTMLElement;
+    private readonly edadPromedio = document.getElementById("lblEdadPromedio") as HTMLElement;
 
     // Elementos del reporte que permanece oculto hasta finalizar la captura.
     private readonly seccionResultados = document.getElementById("resultados") as HTMLElement;
     private readonly totalResultado = document.getElementById("lblTotal") as HTMLElement;
     private readonly mujeresResultado = document.getElementById("lblMujeres") as HTMLElement;
     private readonly hombresResultado = document.getElementById("lblHombres") as HTMLElement;
+    private readonly edadPromedioResultado = document.getElementById("lblEdadPromedioFinal") as HTMLElement;
     private readonly mensajeError = document.getElementById("mensajeFinal") as HTMLElement;
 
     // Conecta el botón de finalizar con la acción del controlador.
@@ -20,18 +22,20 @@ export default class vContadorBootstrap implements IContador {
         this.botonFinalizar.onclick = callback;
     }
 
-    // Actualiza en la pantalla los tres acumuladores actuales, no solo el total general.
-    actualizarConteos(conteos: { total: number; mujeres: number; hombres: number }): void {
+    // Actualiza los conteos y el promedio de edad actuales.
+    actualizarConteos(conteos: { total: number; mujeres: number; hombres: number; edadPromedio: number }): void {
         this.totalProcesadas.textContent = String(conteos.total);
         this.mujeresProcesadas.textContent = String(conteos.mujeres);
         this.hombresProcesados.textContent = String(conteos.hombres);
+        this.edadPromedio.textContent = String(conteos.edadPromedio);
     }
 
     // Copia el conteo definitivo al reporte y lo hace visible para el usuario.
-    reportar(resultados: { total: number; mujeres: number; hombres: number }): void {
+    reportar(resultados: { total: number; mujeres: number; hombres: number; edadPromedio: number }): void {
         this.totalResultado.textContent = String(resultados.total);
         this.mujeresResultado.textContent = String(resultados.mujeres);
         this.hombresResultado.textContent = String(resultados.hombres);
+        this.edadPromedioResultado.textContent = String(resultados.edadPromedio);
         this.seccionResultados.hidden = false;
     }
 

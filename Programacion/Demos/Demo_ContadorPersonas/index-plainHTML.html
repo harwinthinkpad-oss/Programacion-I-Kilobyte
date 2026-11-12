@@ -20,6 +20,10 @@
           <input type="text" id="inNombre" autocomplete="name" maxlength="100">
         </p>
         <p>
+          <label for="inEdad">Edad:</label>
+          <input type="number" id="inEdad" min="0" max="120" step="1">
+        </p>
+        <p>
           <label for="inSexo">Sexo:</label>
           <select id="inSexo">
             <option value="">Selecciona una opción</option>
@@ -38,6 +42,7 @@
       <p>Personas registradas: <strong id="lblTotalProcesadas">0</strong></p>
       <p>Mujeres registradas: <strong id="lblMujeresProcesadas">0</strong></p>
       <p>Hombres registrados: <strong id="lblHombresProcesados">0</strong></p>
+      <p>Edad promedio: <strong id="lblEdadPromedio">0</strong></p>
       <p id="mensajeFinal" role="alert" aria-live="assertive"></p>
       <button type="button" id="btFinalizar">Finalizar y reportar</button>
     </section>
@@ -48,6 +53,7 @@
       <p>Total procesado: <strong id="lblTotal">0</strong></p>
       <p>Mujeres: <strong id="lblMujeres">0</strong></p>
       <p>Hombres: <strong id="lblHombres">0</strong></p>
+      <p>Edad promedio: <strong id="lblEdadPromedioFinal">0</strong></p>
     </section>
   </main>
 

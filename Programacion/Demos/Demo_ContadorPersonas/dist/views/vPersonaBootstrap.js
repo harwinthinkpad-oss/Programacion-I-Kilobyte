@@ -5,6 +5,7 @@ export default class vPersonaBootstrap {
     campos = document.getElementById("camposPersona");
     entradaNombre = document.getElementById("inNombre");
     entradaSexo = document.getElementById("inSexo");
+    entradaEdad = document.getElementById("inEdad");
     mensajeError = document.getElementById("mensajePersona");
     botonRegistrar = document.getElementById("btRegistrar");
     // Recorta espacios al principio y al final para no aceptar un nombre en blanco.
@@ -14,6 +15,10 @@ export default class vPersonaBootstrap {
     // Convierte las opciones F=1 y M=2 al número que espera el modelo.
     get sexo() {
         return this.entradaSexo.value === "" ? Number.NaN : Number(this.entradaSexo.value);
+    }
+    // Returns the age value from the input field, or NaN if not valid.
+    get edad() {
+        return this.entradaEdad.value === "" ? Number.NaN : Number(this.entradaEdad.value);
     }
     // El clic registra de forma explícita; cualquier submit implícito se cancela para evitar recargas.
     onRegistrar(callback) {

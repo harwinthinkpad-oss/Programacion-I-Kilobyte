@@ -21,6 +21,10 @@
           <input type="text" class="form-control" id="inNombre" autocomplete="name" maxlength="100">
         </div>
         <div class="mb-3">
+          <label class="form-label" for="inEdad">Edad:</label>
+          <input type="number" class="form-control" id="inEdad" min="0" max="120" step="1">
+        </div>
+        <div class="mb-3">
           <label class="form-label" for="inSexo">Sexo:</label>
           <select id="inSexo" class="form-select">
             <option value="">Selecciona una opción</option>
@@ -37,7 +41,7 @@
     <section class="mt-4" aria-live="polite">
       <h2 class="h4">Captura</h2>
       <div class="row g-3">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="card h-100">
             <div class="card-body">
               <h3 class="card-title h6">Personas registradas</h3>
@@ -45,7 +49,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="card h-100">
             <div class="card-body">
               <h3 class="card-title h6">Mujeres registradas</h3>
@@ -53,11 +57,19 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="card h-100">
             <div class="card-body">
               <h3 class="card-title h6">Hombres registrados</h3>
               <p class="card-text"><strong id="lblHombresProcesados">0</strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title h6">Edad promedio</h3>
+              <p class="card-text"><strong id="lblEdadPromedio">0</strong></p>
             </div>
           </div>
         </div>
@@ -70,7 +82,7 @@
     <section id="resultados" class="mt-4" hidden aria-labelledby="tituloResultados" aria-live="polite">
       <h2 id="tituloResultados" class="h4">Resultados finales</h2>
       <div class="row g-3">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="card h-100">
             <div class="card-body">
               <h3 class="card-title h6">Total procesado</h3>
@@ -78,7 +90,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="card h-100">
             <div class="card-body">
               <h3 class="card-title h6">Mujeres</h3>
@@ -86,11 +98,19 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="card h-100">
             <div class="card-body">
               <h3 class="card-title h6">Hombres</h3>
               <p class="card-text"><strong id="lblHombres">0</strong></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="card-title h6">Edad promedio</h3>
+              <p class="card-text"><strong id="lblEdadPromedioFinal">0</strong></p>
             </div>
           </div>
         </div>
