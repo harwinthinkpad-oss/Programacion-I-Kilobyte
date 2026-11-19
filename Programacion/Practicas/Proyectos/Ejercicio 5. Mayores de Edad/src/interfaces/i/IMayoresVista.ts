@@ -6,5 +6,6 @@ export default interface IMayoresVista {
     cantidadPersonas: number;
     cantidadMayores: number;
     porcentajeMayores: number;
+    totalEdad: number;
   }): void;
 }

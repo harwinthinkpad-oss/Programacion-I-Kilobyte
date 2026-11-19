@@ -8,6 +8,9 @@ export default class MayoresVistaPlain implements IMayoresVista {
   private readonly cantidadPersonas: HTMLElement;
   private readonly cantidadMayores: HTMLElement;
   private readonly porcentajeMayores: HTMLElement;
+  // Inicio: guardar la referencia al total de edades.
+  private readonly totalEdad: HTMLElement;
+  // Fin: guardar la referencia al total de edades.
 
   constructor() {
     this.botonNuevaPersona = document.getElementById("body_btNuevaPersona") as HTMLButtonElement;
@@ -17,6 +20,9 @@ export default class MayoresVistaPlain implements IMayoresVista {
     this.cantidadPersonas = document.getElementById("body_lblCantidadPersonas") as HTMLElement;
     this.cantidadMayores = document.getElementById("body_lblCantidadMayores") as HTMLElement;
     this.porcentajeMayores = document.getElementById("body_lblPorcentajeMayores") as HTMLElement;
+    // Inicio: enlazar el elemento HTML donde se muestra el total de edades.
+    this.totalEdad = document.getElementById("body_lblTotalEdad") as HTMLElement;
+    // Fin: enlazar el elemento HTML donde se muestra el total de edades.
   }
 
   onNuevaPersona(callback: () => void): void {
@@ -41,10 +47,16 @@ export default class MayoresVistaPlain implements IMayoresVista {
     cantidadPersonas: number;
     cantidadMayores: number;
     porcentajeMayores: number;
+    // Inicio: recibir el total de edades calculado.
+    totalEdad: number;
+    // Fin: recibir el total de edades calculado.
   }): void {
     this.cantidadPersonas.textContent = `${resultado.cantidadPersonas}`;
     this.cantidadMayores.textContent = `${resultado.cantidadMayores}`;
     this.porcentajeMayores.textContent = `${resultado.porcentajeMayores.toFixed(2)}%`;
+    // Inicio: mostrar el total de las edades ingresadas.
+    this.totalEdad.textContent = `${resultado.totalEdad}`;
+    // Fin: mostrar el total de las edades ingresadas.
     this.resultado.hidden = false;
     this.botonNuevaPersona.disabled = true;
     this.botonFinalizar.disabled = true;

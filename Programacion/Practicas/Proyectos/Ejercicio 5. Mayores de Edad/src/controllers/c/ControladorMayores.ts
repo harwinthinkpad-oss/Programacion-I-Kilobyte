@@ -39,6 +39,7 @@ export default class ControladorMayores {
       cantidadPersonas: this.mayores.acPersonas,
       cantidadMayores: this.mayores.contMayores,
       porcentajeMayores: this.mayores.returnPorcMayores(),
+      totalEdad: this.mayores.totalEdad(),
     });
   }
 }
