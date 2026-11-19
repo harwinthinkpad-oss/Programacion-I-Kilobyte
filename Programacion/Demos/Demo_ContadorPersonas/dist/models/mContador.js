@@ -6,15 +6,18 @@ export default class mContador {
     acpersonasfemeninas;
     // Número de personas cuyo código de sexo es 2 (Masculino).
     acpersonasmasculinas;
+    acEdad;
     // Empieza la captura sin personas procesadas ni conteos parciales.
     constructor() {
         this.contador = 0;
         this.acpersonasfemeninas = 0;
         this.acpersonasmasculinas = 0;
+        this.acEdad = 0;
     }
     // Suma una persona al total y exactamente a su acumulador según el código F=1 o M=2.
     procesarPersona(persona) {
         this.contador++;
+        this.acEdad += persona.edad;
         switch (persona.sexo) {
             case 1:
                 this.acpersonasfemeninas++;
@@ -35,6 +38,16 @@ export default class mContador {
     // Entrega el total masculino para actualizar el indicador de la vista.
     returnAcPersonasMasculinas() {
         return this.acpersonasmasculinas;
+    }
+    edadPromedio() {
+        if (this.contador === 0) {
+            return 0;
+        }
+        // El promedio es suma de edades / personas; no debe multiplicarse por 100.
+        return this.acEdad / this.contador;
+    }
+    returnEdadPromedio() {
+        return this.edadPromedio();
     }
 }
 //# sourceMappingURL=mContador.js.map

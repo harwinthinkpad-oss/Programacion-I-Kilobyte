@@ -7,6 +7,7 @@ export default class vPersonaBootstrap implements IPersonas {
     private readonly campos = document.getElementById("camposPersona") as HTMLFieldSetElement;
     private readonly entradaNombre = document.getElementById("inNombre") as HTMLInputElement;
     private readonly entradaSexo = document.getElementById("inSexo") as HTMLSelectElement;
+    private readonly entradaEdad = document.getElementById("inEdad") as HTMLInputElement;
     private readonly mensajeError = document.getElementById("mensajePersona") as HTMLElement;
     private readonly botonRegistrar = document.getElementById("btRegistrar") as HTMLButtonElement;
 
@@ -18,6 +19,11 @@ export default class vPersonaBootstrap implements IPersonas {
     // Convierte las opciones F=1 y M=2 al número que espera el modelo.
     get sexo(): number {
         return this.entradaSexo.value === "" ? Number.NaN : Number(this.entradaSexo.value);
+    }
+
+    // Returns the age value from the input field, or NaN if not valid.
+    get edad(): number {
+        return this.entradaEdad.value === "" ? Number.NaN : Number(this.entradaEdad.value);
     }
 
     // El clic registra de forma explícita; cualquier submit implícito se cancela para evitar recargas.
@@ -45,4 +51,5 @@ export default class vPersonaBootstrap implements IPersonas {
     finalizarCaptura(): void {
         this.campos.disabled = true;
     }
+
 }

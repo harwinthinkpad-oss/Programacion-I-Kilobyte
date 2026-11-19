@@ -5,27 +5,31 @@ export default class vContadorBootstrap {
     totalProcesadas = document.getElementById("lblTotalProcesadas");
     mujeresProcesadas = document.getElementById("lblMujeresProcesadas");
     hombresProcesados = document.getElementById("lblHombresProcesados");
+    edadPromedio = document.getElementById("lblEdadPromedio");
     // Elementos del reporte que permanece oculto hasta finalizar la captura.
     seccionResultados = document.getElementById("resultados");
     totalResultado = document.getElementById("lblTotal");
     mujeresResultado = document.getElementById("lblMujeres");
     hombresResultado = document.getElementById("lblHombres");
+    edadPromedioResultado = document.getElementById("lblEdadPromedioFinal");
     mensajeError = document.getElementById("mensajeFinal");
     // Conecta el botón de finalizar con la acción del controlador.
     onFinalizar(callback) {
         this.botonFinalizar.onclick = callback;
     }
-    // Actualiza en la pantalla los tres acumuladores actuales, no solo el total general.
+    // Actualiza los conteos y el promedio de edad actuales.
     actualizarConteos(conteos) {
         this.totalProcesadas.textContent = String(conteos.total);
         this.mujeresProcesadas.textContent = String(conteos.mujeres);
         this.hombresProcesados.textContent = String(conteos.hombres);
+        this.edadPromedio.textContent = String(conteos.edadPromedio);
     }
     // Copia el conteo definitivo al reporte y lo hace visible para el usuario.
     reportar(resultados) {
         this.totalResultado.textContent = String(resultados.total);
         this.mujeresResultado.textContent = String(resultados.mujeres);
         this.hombresResultado.textContent = String(resultados.hombres);
+        this.edadPromedioResultado.textContent = String(resultados.edadPromedio);
         this.seccionResultados.hidden = false;
     }
     // Presenta el aviso de cierre o lo oculta aplicando las clases de Bootstrap.
