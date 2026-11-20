@@ -32,7 +32,13 @@ export default class CEnvio {
       montoPedido: this.vista.montoPedido,
     };
     if (this.vista.tipo === "Moto") {
-      this.callbackMoto(new MMoto({ ...datos, distancia: this.vista.distancia }));
+      this.callbackMoto(
+        new MMoto({
+          ...datos,
+          distancia: this.vista.distancia,
+          propinaRecibida: this.vista.propinaRecibida,
+        }),
+      );
     } else {
       this.callbackBici(
         new MBici({

@@ -33,6 +33,10 @@
           Suscripciones estudiantiles con descuento vigente:
           <strong id="plataforma_lblEstudiantesVigentes">0</strong>
         </p>
+        <p>
+          Mayor cantidad de playlists creadas por un estudiante:
+          <strong id="plataforma_lblMayorPlaylistsEstudiante">0</strong>
+        </p>
       </section>
 
       <section id="suscripcion" hidden>
@@ -61,6 +65,17 @@
               <option value="si">Sí</option>
               <option value="no">No</option>
             </select>
+          </p>
+          <p>
+            <label for="suscripcion_inCantidadPlaylists">Cantidad de playlists creadas:</label>
+            <input
+              id="suscripcion_inCantidadPlaylists"
+              name="cantidadPlaylists"
+              type="number"
+              min="0"
+              step="1"
+              required
+            />
           </p>
           <p id="suscripcion_lblError" role="alert" hidden></p>
           <button id="suscripcion_btCancelar" type="button">Cancelar</button>

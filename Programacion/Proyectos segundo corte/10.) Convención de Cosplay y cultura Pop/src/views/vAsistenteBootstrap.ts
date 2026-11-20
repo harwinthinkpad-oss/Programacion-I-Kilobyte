@@ -10,8 +10,10 @@ export default class VAsistenteBootstrap implements iAsistente {
   private readonly inTipo: HTMLSelectElement;
   private readonly inPreventa: HTMLSelectElement;
   private readonly inGrupal: HTMLInputElement;
+  private readonly inTrajeArtesanal: HTMLInputElement;
   private readonly grupoPreventa: HTMLElement;
   private readonly grupoGrupal: HTMLElement;
+  private readonly grupoArtesanal: HTMLElement;
   private readonly btCancelar: HTMLButtonElement;
   private readonly modal: InstanceType<typeof bootstrap.Modal>;
 
@@ -23,8 +25,10 @@ export default class VAsistenteBootstrap implements iAsistente {
     this.inTipo = document.getElementById("asistente_inTipo") as HTMLSelectElement;
     this.inPreventa = document.getElementById("asistente_inPreventa") as HTMLSelectElement;
     this.inGrupal = document.getElementById("asistente_inGrupal") as HTMLInputElement;
+    this.inTrajeArtesanal = document.getElementById("asistente_inTrajeArtesanal") as HTMLInputElement;
     this.grupoPreventa = document.getElementById("asistente_grupoPreventa") as HTMLElement;
     this.grupoGrupal = document.getElementById("asistente_grupoGrupal") as HTMLElement;
+    this.grupoArtesanal = document.getElementById("asistente_grupoArtesanal") as HTMLElement;
     this.btCancelar = document.getElementById("asistente_btCancelar") as HTMLButtonElement;
     this.modal = new bootstrap.Modal(elementoModal);
     this.inTipo.onchange = () => this.actualizarCampos();
@@ -45,6 +49,9 @@ export default class VAsistenteBootstrap implements iAsistente {
   }
   get grupal(): boolean {
     return this.inGrupal.checked;
+  }
+  get trajeArtesanal(): boolean {
+    return this.inTrajeArtesanal.checked;
   }
 
   onAceptar(callback: () => void): void {
@@ -69,5 +76,6 @@ export default class VAsistenteBootstrap implements iAsistente {
     const visitante = this.inTipo.value === "Visitante";
     this.grupoPreventa.hidden = !visitante;
     this.grupoGrupal.hidden = visitante;
+    this.grupoArtesanal.hidden = visitante;
   }
 }

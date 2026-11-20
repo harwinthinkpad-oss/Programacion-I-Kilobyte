@@ -27,6 +27,7 @@ export default class cSuscripcion {
       suscripcion = new mPlanEstudiante(
         this.vista.correo,
         this.vista.carnetVigente,
+        this.vista.cantidadPlaylists,
       );
     } else if (this.vista.tipoPlan === "duo") {
       suscripcion = new mPlanDuo(this.vista.correo);

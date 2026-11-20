@@ -4,6 +4,7 @@ export interface iSuscripcion {
   get correo(): string;
   get tipoPlan(): TipoPlan;
   get carnetVigente(): boolean;
+  get cantidadPlaylists(): number;
   validarFormulario(): boolean;
   mostrar(): void;
   ocultar(): void;

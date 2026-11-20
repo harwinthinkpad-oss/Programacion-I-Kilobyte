@@ -12,15 +12,15 @@ export default class cPlataforma {
         this.cSuscripcion.solicitarSuscripcion((suscripcion) => {
             if (suscripcion === null)
                 return;
-           
             const cobroUsuario = this.mPlataforma.procesarSuscripcion(suscripcion);
             const informe = {
                 cobros: this.mPlataforma.getCobros(),
                 ingresoTotal: this.mPlataforma.ingresoTotal(),
                 cntEstudiantesVigentes: this.mPlataforma.cantEstudiantesVigentes(),
+                mayorPlaylistsEstudiante: this.mPlataforma.mayorPlaylistsEstudiante(),
             };
-            
             this.vista.reportar(informe);
         });
     }
 }
+//# sourceMappingURL=cPlataforma.js.map

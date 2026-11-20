@@ -6,6 +6,7 @@ export default class mPlataforma {
   private cobros: iCobroSuscripcion[] = [];
   private acIngresoTotal: number = 0;
   private cntEstudiantesVigentes: number = 0;
+  private mayorCantidadPlaylists: number = 0;
 
   procesarSuscripcion(suscripcion: mSuscripcion): iCobroSuscripcion {
     const cobroUsuario: iCobroSuscripcion = {
@@ -23,6 +24,13 @@ export default class mPlataforma {
       this.cntEstudiantesVigentes++;
     }
 
+    if (suscripcion instanceof mPlanEstudiante) {
+      const cantidad = suscripcion.getCantidadPlaylists();
+      if (cantidad > this.mayorCantidadPlaylists) {
+        this.mayorCantidadPlaylists = cantidad;
+      }
+    }
+
     return { ...cobroUsuario };
   }
 
@@ -36,5 +44,9 @@ export default class mPlataforma {
 
   cantEstudiantesVigentes(): number {
     return this.cntEstudiantesVigentes;
+  }
+
+  mayorPlaylistsEstudiante(): number {
+    return this.mayorCantidadPlaylists;
   }
 }

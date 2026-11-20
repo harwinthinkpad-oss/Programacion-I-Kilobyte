@@ -6,6 +6,7 @@ export default class VDeliveryBootstrap implements iDelivery {
   private readonly lblMoto: HTMLElement;
   private readonly lblBici: HTMLElement;
   private readonly lblPromedio: HTMLElement;
+  private readonly lblMayorPropinaMoto: HTMLElement;
 
   constructor() {
     this.btNuevo = document.getElementById("body_btNuevoEnvio") as HTMLButtonElement;
@@ -13,6 +14,7 @@ export default class VDeliveryBootstrap implements iDelivery {
     this.lblMoto = document.getElementById("body_lblMoto") as HTMLElement;
     this.lblBici = document.getElementById("body_lblBici") as HTMLElement;
     this.lblPromedio = document.getElementById("body_lblPromedio") as HTMLElement;
+    this.lblMayorPropinaMoto = document.getElementById("body_lblMayorPropinaMoto") as HTMLElement;
   }
 
   onNuevoEnvio(callback: () => void): void {
@@ -24,11 +26,13 @@ export default class VDeliveryBootstrap implements iDelivery {
     totalMoto,
     totalBici,
     promedioGeneral,
+    mayorPropinaMoto,
   }: {
     envio: RegistroEnvio | null;
     totalMoto: number;
     totalBici: number;
     promedioGeneral: number;
+    mayorPropinaMoto: number;
   }): void {
     if (envio !== null) {
       const fila = document.createElement("tr");
@@ -44,6 +48,7 @@ export default class VDeliveryBootstrap implements iDelivery {
     this.lblMoto.textContent = `$${this.formatearMonto(totalMoto)}`;
     this.lblBici.textContent = `$${this.formatearMonto(totalBici)}`;
     this.lblPromedio.textContent = `$${this.formatearMonto(promedioGeneral)}`;
+    this.lblMayorPropinaMoto.textContent = `$${this.formatearMonto(mayorPropinaMoto)}`;
   }
 
   private formatearMonto(monto: number): string {

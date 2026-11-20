@@ -8,6 +8,7 @@ export default class vPlataformaBootstrap implements iPlataforma {
   private tablaCobros: HTMLTableSectionElement;
   private lblIngresoTotal: HTMLElement;
   private lblEstudiantesVigentes: HTMLElement;
+  private lblMayorPlaylistsEstudiante: HTMLElement;
 
   constructor() {
     this.btNuevaSuscripcion = document.getElementById(
@@ -21,6 +22,9 @@ export default class vPlataformaBootstrap implements iPlataforma {
     ) as HTMLElement;
     this.lblEstudiantesVigentes = document.getElementById(
       "plataforma_lblEstudiantesVigentes",
+    ) as HTMLElement;
+    this.lblMayorPlaylistsEstudiante = document.getElementById(
+      "plataforma_lblMayorPlaylistsEstudiante",
     ) as HTMLElement;
   }
 
@@ -43,5 +47,7 @@ export default class vPlataformaBootstrap implements iPlataforma {
     this.lblIngresoTotal.textContent = `$${informe.ingresoTotal.toFixed(2)}`;
     this.lblEstudiantesVigentes.textContent =
       `${informe.cntEstudiantesVigentes}`;
+    this.lblMayorPlaylistsEstudiante.textContent =
+      `${informe.mayorPlaylistsEstudiante}`;
   }
 }

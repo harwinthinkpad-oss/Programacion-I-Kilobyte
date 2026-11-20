@@ -6,11 +6,15 @@ export default class MDelivery {
   private acRecaudadoBici: number = 0;
   private acCostoEnvios: number = 0;
   private cntEnvios: number = 0;
+  private mayorPropinaRecibidaMoto: number = 0;
 
   procesarEnvioMoto(envio: MMoto): void {
     this.acCostoEnvios += envio.costoEnvio;
     this.cntEnvios++;
     this.acRecaudadoMoto += envio.costoEnvio;
+    if (envio.propinaRecibida > this.mayorPropinaRecibidaMoto) {
+      this.mayorPropinaRecibidaMoto = envio.propinaRecibida;
+    }
   }
 
   procesarEnvioBici(envio: MBici): void {
@@ -30,5 +34,9 @@ export default class MDelivery {
   promedioGeneral(): number {
     if (this.cntEnvios > 0) return this.acCostoEnvios / this.cntEnvios;
     return 0;
+  }
+
+  mayorPropinaMoto(): number {
+    return this.mayorPropinaRecibidaMoto;
   }
 }

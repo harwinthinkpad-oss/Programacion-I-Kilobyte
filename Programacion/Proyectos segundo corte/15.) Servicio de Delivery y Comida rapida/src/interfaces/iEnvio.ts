@@ -3,6 +3,7 @@ export interface iEnvio {
   get montoPedido(): number;
   get tipo(): "Moto" | "Bici";
   get distancia(): number;
+  get propinaRecibida(): number;
   get bolsaTermica(): boolean;
   get horaPico(): boolean;
   mostrar(): void;

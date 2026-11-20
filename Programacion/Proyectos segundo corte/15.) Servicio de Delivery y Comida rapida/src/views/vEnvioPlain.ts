@@ -7,6 +7,7 @@ export default class VEnvioPlain implements iEnvio {
   private readonly inMontoPedido: HTMLInputElement;
   private readonly inTipo: HTMLSelectElement;
   private readonly inDistancia: HTMLInputElement;
+  private readonly inPropinaRecibida: HTMLInputElement;
   private readonly inBolsaTermica: HTMLSelectElement;
   private readonly inHoraPico: HTMLSelectElement;
   private readonly grupoDistancia: HTMLElement;
@@ -20,6 +21,7 @@ export default class VEnvioPlain implements iEnvio {
     this.inMontoPedido = document.getElementById("envio_inMontoPedido") as HTMLInputElement;
     this.inTipo = document.getElementById("envio_inTipo") as HTMLSelectElement;
     this.inDistancia = document.getElementById("envio_inDistancia") as HTMLInputElement;
+    this.inPropinaRecibida = document.getElementById("envio_inPropinaRecibida") as HTMLInputElement;
     this.inBolsaTermica = document.getElementById("envio_inBolsaTermica") as HTMLSelectElement;
     this.inHoraPico = document.getElementById("envio_inHoraPico") as HTMLSelectElement;
     this.grupoDistancia = document.getElementById("envio_grupoDistancia") as HTMLElement;
@@ -40,6 +42,9 @@ export default class VEnvioPlain implements iEnvio {
   }
   get distancia(): number {
     return Number(this.inDistancia.value);
+  }
+  get propinaRecibida(): number {
+    return Number(this.inPropinaRecibida.value);
   }
   get bolsaTermica(): boolean {
     return this.inBolsaTermica.value === "Si";
@@ -71,5 +76,6 @@ export default class VEnvioPlain implements iEnvio {
     this.grupoDistancia.hidden = !moto;
     this.grupoBici.hidden = moto;
     this.inDistancia.required = moto;
+    this.inPropinaRecibida.required = moto;
   }
 }

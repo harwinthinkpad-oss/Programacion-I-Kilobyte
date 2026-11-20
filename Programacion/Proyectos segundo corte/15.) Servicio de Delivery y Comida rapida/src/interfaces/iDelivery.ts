@@ -11,10 +11,12 @@ export interface iDelivery {
     totalMoto,
     totalBici,
     promedioGeneral,
+    mayorPropinaMoto,
   }: {
     envio: RegistroEnvio | null;
     totalMoto: number;
     totalBici: number;
     promedioGeneral: number;
+    mayorPropinaMoto: number;
   }): void;
 }

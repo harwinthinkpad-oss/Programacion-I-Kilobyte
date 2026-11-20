@@ -31,7 +31,11 @@ export default class CAsistente {
     const asistente =
       this.vista.tipo === "Visitante"
         ? new MVisitante({ ...datos, preventa: this.vista.preventa })
-        : new MCosplayer({ ...datos, grupal: this.vista.grupal });
+        : new MCosplayer({
+            ...datos,
+            grupal: this.vista.grupal,
+            trajeArtesanal: this.vista.trajeArtesanal,
+          });
     this.callback(asistente);
     this.vista.ocultar();
   }

@@ -3,11 +3,13 @@ export default class vPlataformaPlain {
     tablaCobros;
     lblIngresoTotal;
     lblEstudiantesVigentes;
+    lblMayorPlaylistsEstudiante;
     constructor() {
         this.btNuevaSuscripcion = document.getElementById("plataforma_btNuevaSuscripcion");
         this.tablaCobros = document.getElementById("plataforma_tbCobros");
         this.lblIngresoTotal = document.getElementById("plataforma_lblIngresoTotal");
         this.lblEstudiantesVigentes = document.getElementById("plataforma_lblEstudiantesVigentes");
+        this.lblMayorPlaylistsEstudiante = document.getElementById("plataforma_lblMayorPlaylistsEstudiante");
     }
     onNuevaSuscripcion(callback) {
         this.btNuevaSuscripcion.onclick = callback;
@@ -26,5 +28,8 @@ export default class vPlataformaPlain {
         this.lblIngresoTotal.textContent = `$${informe.ingresoTotal.toFixed(2)}`;
         this.lblEstudiantesVigentes.textContent =
             `${informe.cntEstudiantesVigentes}`;
+        this.lblMayorPlaylistsEstudiante.textContent =
+            `${informe.mayorPlaylistsEstudiante}`;
     }
 }
+//# sourceMappingURL=vPlataformaPlain.js.map

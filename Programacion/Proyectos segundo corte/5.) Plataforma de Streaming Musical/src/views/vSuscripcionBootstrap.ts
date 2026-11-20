@@ -11,6 +11,7 @@ export default class vSuscripcionBootstrap implements iSuscripcion {
   private inCorreo: HTMLInputElement;
   private slTipoPlan: HTMLSelectElement;
   private slCarnetVigente: HTMLSelectElement;
+  private inCantidadPlaylists: HTMLInputElement;
   private btCancelar: HTMLButtonElement;
   private lblError: HTMLElement;
   private modal: InstanceType<typeof bootstrap.Modal>;
@@ -29,6 +30,9 @@ export default class vSuscripcionBootstrap implements iSuscripcion {
     this.slCarnetVigente = document.getElementById(
       "suscripcion_slCarnetVigente",
     ) as HTMLSelectElement;
+    this.inCantidadPlaylists = document.getElementById(
+      "suscripcion_inCantidadPlaylists",
+    ) as HTMLInputElement;
     this.btCancelar = document.getElementById(
       "suscripcion_btCancelar",
     ) as HTMLButtonElement;
@@ -52,6 +56,10 @@ export default class vSuscripcionBootstrap implements iSuscripcion {
     return this.slCarnetVigente.value === "si";
   }
 
+  get cantidadPlaylists(): number {
+    return Number(this.inCantidadPlaylists.value);
+  }
+
   validarFormulario(): boolean {
     this.mostrarError("");
     if (!this.formulario.reportValidity()) return false;
@@ -65,6 +73,14 @@ export default class vSuscripcionBootstrap implements iSuscripcion {
       this.slCarnetVigente.value !== "no"
     ) {
       this.mostrarError("Selecciona si el carnet está vigente.");
+      return false;
+    }
+    if (
+      this.tipoPlan === "estudiante" &&
+      (!Number.isInteger(this.cantidadPlaylists) ||
+        this.cantidadPlaylists < 0)
+    ) {
+      this.mostrarError("Ingresa una cantidad válida de playlists.");
       return false;
     }
     return true;
@@ -103,6 +119,8 @@ export default class vSuscripcionBootstrap implements iSuscripcion {
   private actualizarCarnet(): void {
     const esEstudiante = this.slTipoPlan.value === "estudiante";
     this.slCarnetVigente.disabled = !esEstudiante;
+    this.inCantidadPlaylists.disabled = !esEstudiante;
+    this.inCantidadPlaylists.required = esEstudiante;
     if (!esEstudiante) this.slCarnetVigente.value = "no";
   }
 }

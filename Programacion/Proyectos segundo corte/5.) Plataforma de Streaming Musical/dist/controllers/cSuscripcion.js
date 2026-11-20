@@ -18,7 +18,7 @@ export default class cSuscripcion {
             return;
         let suscripcion;
         if (this.vista.tipoPlan === "estudiante") {
-            suscripcion = new mPlanEstudiante(this.vista.correo, this.vista.carnetVigente);
+            suscripcion = new mPlanEstudiante(this.vista.correo, this.vista.carnetVigente, this.vista.cantidadPlaylists);
         }
         else if (this.vista.tipoPlan === "duo") {
             suscripcion = new mPlanDuo(this.vista.correo);
@@ -35,3 +35,4 @@ export default class cSuscripcion {
         this.vista.ocultar();
     }
 }
+//# sourceMappingURL=cSuscripcion.js.map

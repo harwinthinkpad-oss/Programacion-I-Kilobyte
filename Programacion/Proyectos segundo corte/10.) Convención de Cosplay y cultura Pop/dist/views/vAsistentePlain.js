@@ -6,8 +6,10 @@ export default class VAsistentePlain {
     inTipo;
     inPreventa;
     inGrupal;
+    inTrajeArtesanal;
     grupoPreventa;
     grupoGrupal;
+    grupoArtesanal;
     btCancelar;
     constructor() {
         this.formulario = document.getElementById("asistente_form");
@@ -17,8 +19,10 @@ export default class VAsistentePlain {
         this.inTipo = document.getElementById("asistente_inTipo");
         this.inPreventa = document.getElementById("asistente_inPreventa");
         this.inGrupal = document.getElementById("asistente_inGrupal");
+        this.inTrajeArtesanal = document.getElementById("asistente_inTrajeArtesanal");
         this.grupoPreventa = document.getElementById("asistente_grupoPreventa");
         this.grupoGrupal = document.getElementById("asistente_grupoGrupal");
+        this.grupoArtesanal = document.getElementById("asistente_grupoArtesanal");
         this.btCancelar = document.getElementById("asistente_btCancelar");
         this.inTipo.onchange = () => this.actualizarCampos();
         this.actualizarCampos();
@@ -37,6 +41,9 @@ export default class VAsistentePlain {
     }
     get grupal() {
         return this.inGrupal.checked;
+    }
+    get trajeArtesanal() {
+        return this.inTrajeArtesanal.checked;
     }
     onAceptar(callback) {
         this.formulario.onsubmit = (event) => {
@@ -59,6 +66,7 @@ export default class VAsistentePlain {
         const visitante = this.inTipo.value === "Visitante";
         this.grupoPreventa.hidden = !visitante;
         this.grupoGrupal.hidden = visitante;
+        this.grupoArtesanal.hidden = visitante;
     }
 }
 //# sourceMappingURL=vAsistentePlain.js.map
