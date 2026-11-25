@@ -25,6 +25,7 @@ export default class cPlataforma {
         cobros: this.mPlataforma.getCobros(),
         ingresoTotal: this.mPlataforma.ingresoTotal(),
         cntEstudiantesVigentes: this.mPlataforma.cantEstudiantesVigentes(),
+        mayorPlaylistsEstudiante: this.mPlataforma.mayorPlaylistsEstudiante(),
       };
 
       this.vista.reportar(informe);

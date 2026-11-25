@@ -32,7 +32,11 @@ export default class CEnvio {
     let envio: MEnvio;
 
     if (this.vista.tipo === "Moto") {
-      envio = new MMoto({ ...datos, distancia: this.vista.distancia });
+      envio = new MMoto({
+        ...datos,
+        distancia: this.vista.distancia,
+        propinaRecibida: this.vista.propinaRecibida,
+      });
     } else {
       envio = new MBici({
         ...datos,

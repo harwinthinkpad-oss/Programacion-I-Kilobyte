@@ -13,7 +13,8 @@
     <pre id="body_reporte">Total recaudado en envíos Moto: $0.00
 Total recaudado en envíos Bici: $0.00
 Promedio general de costo de envío: $0.00
-Tiempo promedio de entrega: 0.00 min</pre>
+Tiempo promedio de entrega: 0.00 min
+Mayor propina recibida en envíos Moto: $0.00</pre>
   </section>
 
   <section id="envio" hidden style="margin-top: 20px; border: 1px solid #ccc; padding: 15px; width: 300px;">
@@ -40,6 +41,10 @@ Tiempo promedio de entrega: 0.00 min</pre>
       <div id="envio_grupoDistancia">
         <label>Distancia (km):
           <input type="number" id="envio_inDistancia" min="0" step="0.1" />
+        </label>
+        <br />
+        <label>Propina recibida:
+          <input type="number" id="envio_inPropinaRecibida" min="0" step="0.01" />
         </label>
       </div>
       <div id="envio_grupoBici" hidden>

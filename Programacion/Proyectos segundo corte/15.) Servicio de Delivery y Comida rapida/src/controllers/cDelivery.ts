@@ -36,6 +36,7 @@ export default class CDelivery {
       totalBici: this.modelo.totalBici(),
       promedioGeneral: this.modelo.promedioGeneral(),
       tiempoPromedio: this.modelo.tiempoPromedio(),
+      mayorPropinaMoto: this.modelo.mayorPropinaMoto(),
     });
   }
 }

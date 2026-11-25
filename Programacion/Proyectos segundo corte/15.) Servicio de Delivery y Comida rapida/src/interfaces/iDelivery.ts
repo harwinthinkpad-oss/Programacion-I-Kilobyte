@@ -13,11 +13,13 @@ export interface iDelivery {
     totalBici,
     promedioGeneral,
     tiempoPromedio,
+    mayorPropinaMoto,
   }: {
     envio: RegistroEnvio | null;
     totalMoto: number;
     totalBici: number;
     promedioGeneral: number;
     tiempoPromedio: number;
+    mayorPropinaMoto: number;
   }): void;
 }

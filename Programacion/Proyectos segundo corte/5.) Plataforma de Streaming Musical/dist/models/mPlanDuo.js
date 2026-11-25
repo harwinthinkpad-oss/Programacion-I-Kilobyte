@@ -4,3 +4,4 @@ export default class mPlanDuo extends mSuscripcion {
         return this.getTarifaBase() + 3;
     }
 }
+//# sourceMappingURL=mPlanDuo.js.map

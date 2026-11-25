@@ -8,6 +8,7 @@ export default class MDelivery {
   private acCostoEnvios: number = 0;
   private acTiempoEstimado: number = 0;
   private cntEnvios: number = 0;
+  private mayorPropinaRecibidaMoto: number = 0;
 
   procesar(envio: MEnvio): void {
     const costo = envio.costoEnvio;
@@ -19,6 +20,9 @@ export default class MDelivery {
 
     if (envio instanceof MMoto) {
       this.acRecaudadoMoto += costo;
+      if (envio.propinaRecibida > this.mayorPropinaRecibidaMoto) {
+        this.mayorPropinaRecibidaMoto = envio.propinaRecibida;
+      }
     } else if (envio instanceof MBici) {
       this.acRecaudadoBici += costo;
     }
@@ -40,5 +44,9 @@ export default class MDelivery {
   tiempoPromedio(): number {
     if (this.cntEnvios > 0) return this.acTiempoEstimado / this.cntEnvios;
     return 0;
+  }
+
+  mayorPropinaMoto(): number {
+    return this.mayorPropinaRecibidaMoto;
   }
 }

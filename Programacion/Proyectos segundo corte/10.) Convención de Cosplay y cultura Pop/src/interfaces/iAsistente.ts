@@ -4,6 +4,7 @@ export interface iAsistente {
   get tipo(): "Visitante" | "Cosplayer";
   get preventa(): boolean;
   get grupal(): boolean;
+  get trajeArtesanal(): boolean;
   mostrar(): void;
   ocultar(): void;
   onAceptar(callback: () => void): void;

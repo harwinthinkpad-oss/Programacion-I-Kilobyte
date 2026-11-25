@@ -14,3 +14,4 @@ export default class mSuscripcion {
         return this.getTarifaBase();
     }
 }
+//# sourceMappingURL=mSuscripcion.js.map

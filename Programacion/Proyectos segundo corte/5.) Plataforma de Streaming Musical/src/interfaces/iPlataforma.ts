@@ -7,6 +7,7 @@ export interface iInformePlataforma {
   cobros: iCobroSuscripcion[];
   ingresoTotal: number;
   cntEstudiantesVigentes: number;
+  mayorPlaylistsEstudiante: number;
 }
 
 export interface iPlataforma {

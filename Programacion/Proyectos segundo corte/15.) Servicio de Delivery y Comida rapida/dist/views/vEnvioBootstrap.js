@@ -4,6 +4,7 @@ export default class VEnvioBootstrap {
     inMontoPedido;
     inTipo;
     inDistancia;
+    inPropinaRecibida;
     inBolsaTermica;
     inHoraPico;
     grupoDistancia;
@@ -17,6 +18,7 @@ export default class VEnvioBootstrap {
         this.inMontoPedido = document.getElementById("envio_inMontoPedido");
         this.inTipo = document.getElementById("envio_inTipo");
         this.inDistancia = document.getElementById("envio_inDistancia");
+        this.inPropinaRecibida = document.getElementById("envio_inPropinaRecibida");
         this.inBolsaTermica = document.getElementById("envio_inBolsaTermica");
         this.inHoraPico = document.getElementById("envio_inHoraPico");
         this.grupoDistancia = document.getElementById("envio_grupoDistancia");
@@ -37,6 +39,9 @@ export default class VEnvioBootstrap {
     }
     get distancia() {
         return Number(this.inDistancia.value);
+    }
+    get propinaRecibida() {
+        return Number(this.inPropinaRecibida.value);
     }
     get bolsaTermica() {
         return this.inBolsaTermica.value === "Si";
@@ -66,6 +71,7 @@ export default class VEnvioBootstrap {
         this.grupoDistancia.hidden = !moto;
         this.grupoBici.hidden = moto;
         this.inDistancia.required = moto;
+        this.inPropinaRecibida.required = moto;
     }
 }
 //# sourceMappingURL=vEnvioBootstrap.js.map

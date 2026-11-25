@@ -20,12 +20,14 @@ export default class VDeliveryPlain implements iDelivery {
     totalBici,
     promedioGeneral,
     tiempoPromedio,
+    mayorPropinaMoto,
   }: {
     envio: RegistroEnvio | null;
     totalMoto: number;
     totalBici: number;
     promedioGeneral: number;
     tiempoPromedio: number;
+    mayorPropinaMoto: number;
   }): void {
     if (envio !== null) {
       this.detalleEnvios += `Guía ${envio.numeroGuia}: $${this.formatearMonto(envio.costo)} -> Tiempo estimado: ${envio.tiempoEstimado} min\n`;
@@ -35,7 +37,8 @@ export default class VDeliveryPlain implements iDelivery {
     texto += `Total recaudado en envíos Moto: $${this.formatearMonto(totalMoto)}\n`;
     texto += `Total recaudado en envíos Bici: $${this.formatearMonto(totalBici)}\n`;
     texto += `Promedio general de costo de envío: $${this.formatearMonto(promedioGeneral)}\n`;
-    texto += `Tiempo promedio de entrega: ${this.formatearMonto(tiempoPromedio)} min`;
+    texto += `Tiempo promedio de entrega: ${this.formatearMonto(tiempoPromedio)} min\n`;
+    texto += `Mayor propina recibida en envíos Moto: $${this.formatearMonto(mayorPropinaMoto)}`;
     this.reporte.textContent = texto;
   }
 

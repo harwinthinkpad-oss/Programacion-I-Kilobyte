@@ -15,14 +15,15 @@
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
-          <tr><th>Nombre</th><th>Cédula</th><th>Tipo de pase</th><th>Monto pagado</th></tr>
+          <tr><th>Nombre</th><th>Cédula</th><th>Tipo de pase</th><th>Monto pagado</th><th>Traje artesanal</th></tr>
         </thead>
         <tbody id="body_asistentes"></tbody>
       </table>
     </div>
     <div class="alert alert-info">
       <p class="mb-1">Total recaudado en taquilla: <strong id="body_lblTotal">$0</strong></p>
-      <p class="mb-0">Promedio pagado por Cosplayers: <strong id="body_lblPromedio">$0</strong></p>
+      <p class="mb-1">Promedio pagado por Cosplayers: <strong id="body_lblPromedio">$0</strong></p>
+      <p class="mb-0">Porcentaje de Cosplayers con traje artesanal: <strong id="body_lblPorcentajeArtesanales">0.00%</strong></p>
     </div>
   </main>
 
@@ -54,6 +55,10 @@
             <div class="form-check mb-3" id="asistente_grupoGrupal" hidden>
               <input class="form-check-input" type="checkbox" id="asistente_inGrupal" />
               <label class="form-check-label" for="asistente_inGrupal">Participa en pasarela grupal</label>
+            </div>
+            <div class="form-check mb-3" id="asistente_grupoArtesanal" hidden>
+              <input class="form-check-input" type="checkbox" id="asistente_inTrajeArtesanal" />
+              <label class="form-check-label" for="asistente_inTrajeArtesanal">El traje fue confeccionado artesanalmente</label>
             </div>
           </div>
           <div class="modal-footer">

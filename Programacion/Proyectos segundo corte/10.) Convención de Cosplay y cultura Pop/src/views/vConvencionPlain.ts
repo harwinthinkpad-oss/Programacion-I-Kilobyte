@@ -18,18 +18,25 @@ export default class VConvencionPlain implements iConvencion {
     asistente,
     totalRecaudado,
     promedioCosplayers,
+    porcentajeCosplayersArtesanales,
   }: {
     asistente: RegistroAsistente | null;
     totalRecaudado: number;
     promedioCosplayers: number;
+    porcentajeCosplayersArtesanales: number;
   }): void {
     if (asistente !== null) {
-      this.detalleAsistentes += `${asistente.nombre} (${asistente.cedula}) paga: $${this.formatearMonto(asistente.monto)}\n`;
+      const artesanal =
+        asistente.trajeArtesanal === null
+          ? ""
+          : `, traje artesanal: ${asistente.trajeArtesanal ? "Sí" : "No"}`;
+      this.detalleAsistentes += `${asistente.nombre} (${asistente.cedula}) paga: $${this.formatearMonto(asistente.monto)}${artesanal}\n`;
     }
     let texto = this.detalleAsistentes;
     if (this.detalleAsistentes !== "") texto += "\n";
     texto += `Total recaudado en taquilla: $${this.formatearMonto(totalRecaudado)}\n`;
-    texto += `Promedio pagado por Cosplayers: $${this.formatearMonto(promedioCosplayers)}`;
+    texto += `Promedio pagado por Cosplayers: $${this.formatearMonto(promedioCosplayers)}\n`;
+    texto += `Porcentaje de Cosplayers con traje artesanal: ${porcentajeCosplayersArtesanales.toFixed(2)}%`;
     this.reporte.textContent = texto;
   }
 

@@ -6,6 +6,7 @@ export default class MDelivery {
     acCostoEnvios = 0;
     acTiempoEstimado = 0;
     cntEnvios = 0;
+    mayorPropinaRecibidaMoto = 0;
     procesar(envio) {
         const costo = envio.costoEnvio;
         const tiempo = envio.tiempoEstimado();
@@ -14,6 +15,9 @@ export default class MDelivery {
         this.cntEnvios++;
         if (envio instanceof MMoto) {
             this.acRecaudadoMoto += costo;
+            if (envio.propinaRecibida > this.mayorPropinaRecibidaMoto) {
+                this.mayorPropinaRecibidaMoto = envio.propinaRecibida;
+            }
         }
         else if (envio instanceof MBici) {
             this.acRecaudadoBici += costo;
@@ -34,6 +38,9 @@ export default class MDelivery {
         if (this.cntEnvios > 0)
             return this.acTiempoEstimado / this.cntEnvios;
         return 0;
+    }
+    mayorPropinaMoto() {
+        return this.mayorPropinaRecibidaMoto;
     }
 }
 //# sourceMappingURL=mDelivery.js.map

@@ -3,7 +3,7 @@ export default class mPlataforma {
     cobros = [];
     acIngresoTotal = 0;
     cntEstudiantesVigentes = 0;
-
+    mayorCantidadPlaylists = 0;
     procesarSuscripcion(suscripcion) {
         const cobroUsuario = {
             correo: suscripcion.getCorreo(),
@@ -14,6 +14,12 @@ export default class mPlataforma {
         if (suscripcion instanceof mPlanEstudiante &&
             suscripcion.getVigente()) {
             this.cntEstudiantesVigentes++;
+        }
+        if (suscripcion instanceof mPlanEstudiante) {
+            const cantidad = suscripcion.getCantidadPlaylists();
+            if (cantidad > this.mayorCantidadPlaylists) {
+                this.mayorCantidadPlaylists = cantidad;
+            }
         }
         return { ...cobroUsuario };
     }
@@ -26,4 +32,8 @@ export default class mPlataforma {
     cantEstudiantesVigentes() {
         return this.cntEstudiantesVigentes;
     }
+    mayorPlaylistsEstudiante() {
+        return this.mayorCantidadPlaylists;
+    }
 }
+//# sourceMappingURL=mPlataforma.js.map

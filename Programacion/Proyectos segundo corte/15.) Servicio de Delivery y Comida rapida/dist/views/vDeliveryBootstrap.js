@@ -5,6 +5,7 @@ export default class VDeliveryBootstrap {
     lblBici;
     lblPromedio;
     lblTiempoPromedio;
+    lblMayorPropinaMoto;
     constructor() {
         this.btNuevo = document.getElementById("body_btNuevoEnvio");
         this.filas = document.getElementById("body_envios");
@@ -12,11 +13,12 @@ export default class VDeliveryBootstrap {
         this.lblBici = document.getElementById("body_lblBici");
         this.lblPromedio = document.getElementById("body_lblPromedio");
         this.lblTiempoPromedio = document.getElementById("body_lblTiempoPromedio");
+        this.lblMayorPropinaMoto = document.getElementById("body_lblMayorPropinaMoto");
     }
     onNuevoEnvio(callback) {
         this.btNuevo.onclick = callback;
     }
-    reportar({ envio, totalMoto, totalBici, promedioGeneral, tiempoPromedio, }) {
+    reportar({ envio, totalMoto, totalBici, promedioGeneral, tiempoPromedio, mayorPropinaMoto, }) {
         if (envio !== null) {
             const fila = document.createElement("tr");
             const guia = document.createElement("td");
@@ -34,6 +36,7 @@ export default class VDeliveryBootstrap {
         this.lblBici.textContent = `$${this.formatearMonto(totalBici)}`;
         this.lblPromedio.textContent = `$${this.formatearMonto(promedioGeneral)}`;
         this.lblTiempoPromedio.textContent = `${this.formatearMonto(tiempoPromedio)} min`;
+        this.lblMayorPropinaMoto.textContent = `$${this.formatearMonto(mayorPropinaMoto)}`;
     }
     formatearMonto(monto) {
         return monto.toFixed(2);

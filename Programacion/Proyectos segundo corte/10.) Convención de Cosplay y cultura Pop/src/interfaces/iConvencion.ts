@@ -3,6 +3,7 @@ export type RegistroAsistente = {
   cedula: number;
   tipo: "Visitante" | "Cosplayer";
   monto: number;
+  trajeArtesanal: boolean | null;
 };
 
 export interface iConvencion {
@@ -11,9 +12,11 @@ export interface iConvencion {
     asistente,
     totalRecaudado,
     promedioCosplayers,
+    porcentajeCosplayersArtesanales,
   }: {
     asistente: RegistroAsistente | null;
     totalRecaudado: number;
     promedioCosplayers: number;
+    porcentajeCosplayersArtesanales: number;
   }): void;
 }

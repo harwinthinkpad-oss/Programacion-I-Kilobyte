@@ -2,6 +2,7 @@ import CAsistente from "./cAsistente.js";
 import { iConvencion, RegistroAsistente } from "../interfaces/iConvencion.js";
 import MAsistente from "../models/mAsistente.js";
 import MConvencion from "../models/mConvencion.js";
+import MCosplayer from "../models/mCosplayer.js";
 
 export default class CConvencion {
   private readonly modelo = new MConvencion();
@@ -31,12 +32,18 @@ export default class CConvencion {
         cedula: asistente.cedula,
         tipo: asistente.tipo,
         monto: asistente.pago,
+        trajeArtesanal:
+          asistente instanceof MCosplayer
+            ? asistente.trajeArtesanal
+            : null,
       };
     }
     this.vista.reportar({
       asistente: registro,
       totalRecaudado: this.modelo.totalRecaudado(),
       promedioCosplayers: this.modelo.promedioCosplayers(),
+      porcentajeCosplayersArtesanales:
+        this.modelo.porcentajeCosplayersArtesanales(),
     });
   }
 }
