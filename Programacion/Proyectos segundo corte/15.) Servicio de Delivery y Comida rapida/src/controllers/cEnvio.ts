@@ -1,11 +1,11 @@
 import { iEnvio } from "../interfaces/iEnvio.js";
+import MEnvio from "../models/mEnvio.js";
 import MBici from "../models/mBici.js";
 import MMoto from "../models/mMoto.js";
 
 export default class CEnvio {
   private readonly vista: iEnvio;
-  private callbackMoto!: (envio: MMoto) => void;
-  private callbackBici!: (envio: MBici) => void;
+  private callback!: (envio: MEnvio | null) => void;
 
   constructor(vista: iEnvio) {
     this.vista = vista;
@@ -13,16 +13,13 @@ export default class CEnvio {
     this.vista.onAceptar(() => this.aceptar());
   }
 
-  solicitarEnvio(
-    callbackMoto: (envio: MMoto) => void,
-    callbackBici: (envio: MBici) => void,
-  ): void {
-    this.callbackMoto = callbackMoto;
-    this.callbackBici = callbackBici;
+  solicitarEnvio(callback: (envio: MEnvio | null) => void): void {
+    this.callback = callback;
     this.vista.mostrar();
   }
 
   private cancelar(): void {
+    this.callback(null);
     this.vista.ocultar();
   }
 
@@ -31,17 +28,20 @@ export default class CEnvio {
       numeroGuia: this.vista.numeroGuia,
       montoPedido: this.vista.montoPedido,
     };
+
+    let envio: MEnvio;
+
     if (this.vista.tipo === "Moto") {
-      this.callbackMoto(new MMoto({ ...datos, distancia: this.vista.distancia }));
+      envio = new MMoto({ ...datos, distancia: this.vista.distancia });
     } else {
-      this.callbackBici(
-        new MBici({
-          ...datos,
-          bolsaTermica: this.vista.bolsaTermica,
-          horaPico: this.vista.horaPico,
-        }),
-      );
+      envio = new MBici({
+        ...datos,
+        bolsaTermica: this.vista.bolsaTermica,
+        horaPico: this.vista.horaPico,
+      });
     }
+
+    this.callback(envio);
     this.vista.ocultar();
   }
 }

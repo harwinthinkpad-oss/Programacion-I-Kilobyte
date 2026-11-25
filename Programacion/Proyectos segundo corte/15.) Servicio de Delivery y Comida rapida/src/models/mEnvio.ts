@@ -1,4 +1,4 @@
-export default class MEnvio {
+export default abstract class MEnvio {
   private _numeroGuia: string = "";
   private _montoPedido: number = 0;
 
@@ -28,4 +28,10 @@ export default class MEnvio {
   get costoEnvio(): number {
     return 2;
   }
+
+  protected get tiempoBase(): number {
+    return 10;
+  }
+
+  abstract tiempoEstimado(): number;
 }

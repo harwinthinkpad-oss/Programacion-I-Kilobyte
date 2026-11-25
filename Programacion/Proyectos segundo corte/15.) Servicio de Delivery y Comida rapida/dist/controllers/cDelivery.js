@@ -1,4 +1,5 @@
 import MDelivery from "../models/mDelivery.js";
+import MMoto from "../models/mMoto.js";
 export default class CDelivery {
     modelo = new MDelivery();
     vista;
@@ -10,22 +11,16 @@ export default class CDelivery {
         this.reportar(null);
     }
     procesarEnvio() {
-        this.controladorEnvio.solicitarEnvio((envio) => this.procesarEnvioMoto(envio), (envio) => this.procesarEnvioBici(envio));
-    }
-    procesarEnvioMoto(envio) {
-        this.modelo.procesarEnvioMoto(envio);
-        this.reportar({
-            numeroGuia: envio.numeroGuia,
-            tipo: "Moto",
-            costo: envio.costoEnvio,
-        });
-    }
-    procesarEnvioBici(envio) {
-        this.modelo.procesarEnvioBici(envio);
-        this.reportar({
-            numeroGuia: envio.numeroGuia,
-            tipo: "Bici",
-            costo: envio.costoEnvio,
+        this.controladorEnvio.solicitarEnvio((envio) => {
+            if (envio !== null) {
+                this.modelo.procesar(envio);
+                this.reportar({
+                    numeroGuia: envio.numeroGuia,
+                    tipo: envio instanceof MMoto ? "Moto" : "Bici",
+                    costo: envio.costoEnvio,
+                    tiempoEstimado: envio.tiempoEstimado(),
+                });
+            }
         });
     }
     reportar(envio) {
@@ -34,6 +29,7 @@ export default class CDelivery {
             totalMoto: this.modelo.totalMoto(),
             totalBici: this.modelo.totalBici(),
             promedioGeneral: this.modelo.promedioGeneral(),
+            tiempoPromedio: this.modelo.tiempoPromedio(),
         });
     }
 }

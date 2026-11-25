@@ -2,19 +2,18 @@ import MBici from "../models/mBici.js";
 import MMoto from "../models/mMoto.js";
 export default class CEnvio {
     vista;
-    callbackMoto;
-    callbackBici;
+    callback;
     constructor(vista) {
         this.vista = vista;
         this.vista.onCancelar(() => this.cancelar());
         this.vista.onAceptar(() => this.aceptar());
     }
-    solicitarEnvio(callbackMoto, callbackBici) {
-        this.callbackMoto = callbackMoto;
-        this.callbackBici = callbackBici;
+    solicitarEnvio(callback) {
+        this.callback = callback;
         this.vista.mostrar();
     }
     cancelar() {
+        this.callback(null);
         this.vista.ocultar();
     }
     aceptar() {
@@ -22,16 +21,18 @@ export default class CEnvio {
             numeroGuia: this.vista.numeroGuia,
             montoPedido: this.vista.montoPedido,
         };
+        let envio;
         if (this.vista.tipo === "Moto") {
-            this.callbackMoto(new MMoto({ ...datos, distancia: this.vista.distancia }));
+            envio = new MMoto({ ...datos, distancia: this.vista.distancia });
         }
         else {
-            this.callbackBici(new MBici({
+            envio = new MBici({
                 ...datos,
                 bolsaTermica: this.vista.bolsaTermica,
                 horaPico: this.vista.horaPico,
-            }));
+            });
         }
+        this.callback(envio);
         this.vista.ocultar();
     }
 }

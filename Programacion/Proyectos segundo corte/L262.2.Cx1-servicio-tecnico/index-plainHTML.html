@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicio Técnico - HTML Plano</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    #reparacion { margin-top: 20px; border: 1px solid #ccc; padding: 15px; width: 340px; }
+    #body_listaOrdenes { margin: 10px 0; }
+    #resumen { margin-top: 15px; border: 1px solid #aaa; padding: 10px; background: #f9f9f9; }
+    label { display: block; margin: 6px 0 2px; }
+    input[type="text"], input[type="number"], select { width: 100%; padding: 4px; box-sizing: border-box; }
+    .check-row { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+    button { margin: 4px 2px; padding: 6px 14px; cursor: pointer; }
+  </style>
+</head>
+
+<body>
+
+  <section id="body">
+    <h2>🔧 Servicio Técnico y Reparación de Smartphones (HTML Plano)</h2>
+    <button id="body_btNuevaOrden">Nueva Orden</button>
+    <hr>
+
+    <div id="body_listaOrdenes">
+      <!-- Las órdenes procesadas aparecen aquí -->
+    </div>
+
+    <div id="resumen">
+      <strong>Resumen del Taller</strong><br>
+      Ingreso total: <span id="body_lblIngresoTotal">$0.00</span><br>
+      % Ingresos por pantalla: <span id="body_lblPorcentajePantalla">0.00%</span><br>
+      Orden menor monto: <span id="body_lblOrdenMenor">—</span>
+    </div>
+  </section>
+
+  <!-- Formulario de ingreso de orden (oculto inicialmente) -->
+  <section id="reparacion" hidden>
+    <h5>📋 Registrar Orden de Reparación</h5>
+
+    <label>N° de Orden:
+      <input type="text" id="rep_inOrden" placeholder="Ej: R01">
+    </label>
+
+    <label>Cliente:
+      <input type="text" id="rep_inCliente" placeholder="Nombre del cliente">
+    </label>
+
+    <label>Costo del Repuesto ($):
+      <input type="number" id="rep_inCostoRepuesto" placeholder="Ej: 30" min="0">
+    </label>
+
+    <label>Tipo de Servicio:
+      <select id="rep_selTipo">
+        <option value="pantalla">Cambio de Pantalla</option>
+        <option value="bateria">Cambio de Batería y Puerto</option>
+      </select>
+    </label>
+
+    <!-- Solo para Pantalla -->
+    <div class="check-row" id="rep_rowOled">
+      <input type="checkbox" id="rep_chkOled">
+      <label for="rep_chkOled" style="display:inline; margin:0;">Pantalla OLED original (recargo 20%)</label>
+    </div>
+
+    <!-- Solo para Batería -->
+    <div class="check-row" id="rep_rowReciclaje" hidden>
+      <input type="checkbox" id="rep_chkReciclaje">
+      <label for="rep_chkReciclaje" style="display:inline; margin:0;">Entrega batería para reciclaje (descuento $3)</label>
+    </div>
+
+    <br>
+    <button id="rep_btCancelar">Cancelar</button>
+    <button id="rep_btAceptar">Registrar</button>
+  </section>
+
+  <script type="module">
+    import cServicioTecnico from "./dist/controllers/cServicioTecnico.js";
+    import cReparacion from "./dist/controllers/cReparacion.js";
+
+    import vServicioTecnicoPlain from "./dist/views/vServicioTecnicoPlain.js";
+    import vReparacionPlain from "./dist/views/vReparacionPlain.js";
+
+    // 1. Instanciar las vistas
+    const vistaServicio = new vServicioTecnicoPlain();
+    const vistaReparacion = new vReparacionPlain();
+
+    // 2. Inyectar vistas en los controladores
+    const controladorReparacion = new cReparacion(vistaReparacion);
+    new cServicioTecnico(vistaServicio, controladorReparacion);
+  </script>
+</body>
+
+</html>

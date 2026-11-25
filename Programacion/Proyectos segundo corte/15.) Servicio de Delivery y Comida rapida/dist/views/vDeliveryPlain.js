@@ -9,16 +9,17 @@ export default class VDeliveryPlain {
     onNuevoEnvio(callback) {
         this.btNuevo.onclick = callback;
     }
-    reportar({ envio, totalMoto, totalBici, promedioGeneral, }) {
+    reportar({ envio, totalMoto, totalBici, promedioGeneral, tiempoPromedio, }) {
         if (envio !== null) {
-            this.detalleEnvios += `Guía ${envio.numeroGuia}: $${this.formatearMonto(envio.costo)}\n`;
+            this.detalleEnvios += `Guía ${envio.numeroGuia}: $${this.formatearMonto(envio.costo)} -> Tiempo estimado: ${envio.tiempoEstimado} min\n`;
         }
         let texto = this.detalleEnvios;
         if (this.detalleEnvios !== "")
             texto += "\n";
         texto += `Total recaudado en envíos Moto: $${this.formatearMonto(totalMoto)}\n`;
         texto += `Total recaudado en envíos Bici: $${this.formatearMonto(totalBici)}\n`;
-        texto += `Promedio general de costo de envío: $${this.formatearMonto(promedioGeneral)}`;
+        texto += `Promedio general de costo de envío: $${this.formatearMonto(promedioGeneral)}\n`;
+        texto += `Tiempo promedio de entrega: ${this.formatearMonto(tiempoPromedio)} min`;
         this.reporte.textContent = texto;
     }
     formatearMonto(monto) {

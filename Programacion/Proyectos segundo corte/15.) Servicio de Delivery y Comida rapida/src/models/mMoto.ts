@@ -27,4 +27,12 @@ export default class MMoto extends MEnvio {
     if (this.montoPedido > 25) costo -= 1.5;
     return costo;
   }
+
+  override tiempoEstimado(): number {
+    let tiempo = this.tiempoBase + this.distancia * 1.5;
+    if (this.montoPedido > 25) {
+      tiempo -= 2;
+    }
+    return tiempo;
+  }
 }

@@ -6,6 +6,7 @@ export default class VDeliveryBootstrap implements iDelivery {
   private readonly lblMoto: HTMLElement;
   private readonly lblBici: HTMLElement;
   private readonly lblPromedio: HTMLElement;
+  private readonly lblTiempoPromedio: HTMLElement;
 
   constructor() {
     this.btNuevo = document.getElementById("body_btNuevoEnvio") as HTMLButtonElement;
@@ -13,6 +14,7 @@ export default class VDeliveryBootstrap implements iDelivery {
     this.lblMoto = document.getElementById("body_lblMoto") as HTMLElement;
     this.lblBici = document.getElementById("body_lblBici") as HTMLElement;
     this.lblPromedio = document.getElementById("body_lblPromedio") as HTMLElement;
+    this.lblTiempoPromedio = document.getElementById("body_lblTiempoPromedio") as HTMLElement;
   }
 
   onNuevoEnvio(callback: () => void): void {
@@ -24,11 +26,13 @@ export default class VDeliveryBootstrap implements iDelivery {
     totalMoto,
     totalBici,
     promedioGeneral,
+    tiempoPromedio,
   }: {
     envio: RegistroEnvio | null;
     totalMoto: number;
     totalBici: number;
     promedioGeneral: number;
+    tiempoPromedio: number;
   }): void {
     if (envio !== null) {
       const fila = document.createElement("tr");
@@ -38,12 +42,15 @@ export default class VDeliveryBootstrap implements iDelivery {
       tipo.textContent = envio.tipo;
       const costo = document.createElement("td");
       costo.textContent = `$${this.formatearMonto(envio.costo)}`;
-      fila.append(guia, tipo, costo);
+      const tiempo = document.createElement("td");
+      tiempo.textContent = `${envio.tiempoEstimado} min`;
+      fila.append(guia, tipo, costo, tiempo);
       this.filas.append(fila);
     }
     this.lblMoto.textContent = `$${this.formatearMonto(totalMoto)}`;
     this.lblBici.textContent = `$${this.formatearMonto(totalBici)}`;
     this.lblPromedio.textContent = `$${this.formatearMonto(promedioGeneral)}`;
+    this.lblTiempoPromedio.textContent = `${this.formatearMonto(tiempoPromedio)} min`;
   }
 
   private formatearMonto(monto: number): string {

@@ -1,6 +1,5 @@
 import CEnvio from "./cEnvio.js";
 import { iDelivery, RegistroEnvio } from "../interfaces/iDelivery.js";
-import MBici from "../models/mBici.js";
 import MDelivery from "../models/mDelivery.js";
 import MMoto from "../models/mMoto.js";
 
@@ -17,27 +16,16 @@ export default class CDelivery {
   }
 
   private procesarEnvio(): void {
-    this.controladorEnvio.solicitarEnvio(
-      (envio) => this.procesarEnvioMoto(envio),
-      (envio) => this.procesarEnvioBici(envio),
-    );
-  }
-
-  private procesarEnvioMoto(envio: MMoto): void {
-    this.modelo.procesarEnvioMoto(envio);
-    this.reportar({
-      numeroGuia: envio.numeroGuia,
-      tipo: "Moto",
-      costo: envio.costoEnvio,
-    });
-  }
-
-  private procesarEnvioBici(envio: MBici): void {
-    this.modelo.procesarEnvioBici(envio);
-    this.reportar({
-      numeroGuia: envio.numeroGuia,
-      tipo: "Bici",
-      costo: envio.costoEnvio,
+    this.controladorEnvio.solicitarEnvio((envio) => {
+      if (envio !== null) {
+        this.modelo.procesar(envio);
+        this.reportar({
+          numeroGuia: envio.numeroGuia,
+          tipo: envio instanceof MMoto ? "Moto" : "Bici",
+          costo: envio.costoEnvio,
+          tiempoEstimado: envio.tiempoEstimado(),
+        });
+      }
     });
   }
 
@@ -47,6 +35,7 @@ export default class CDelivery {
       totalMoto: this.modelo.totalMoto(),
       totalBici: this.modelo.totalBici(),
       promedioGeneral: this.modelo.promedioGeneral(),
+      tiempoPromedio: this.modelo.tiempoPromedio(),
     });
   }
 }

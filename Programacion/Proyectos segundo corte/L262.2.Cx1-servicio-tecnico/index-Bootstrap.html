@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicio Técnico - Bootstrap</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div id="app-bootstrap" class="container mt-5">
+    <h2 class="mb-4">🔧 Servicio Técnico y Reparación de Smartphones</h2>
+    <button type="button" class="btn btn-primary mb-3" id="body_btNuevaOrden">Nueva Orden</button>
+    <hr>
+
+    <!-- Tabla de órdenes procesadas -->
+    <table class="table table-striped table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>Orden</th>
+          <th>Cliente</th>
+          <th class="text-end">Monto</th>
+        </tr>
+      </thead>
+      <tbody id="body_tbOrdenes">
+        <!-- Las filas se agregan dinámicamente -->
+      </tbody>
+    </table>
+
+    <!-- Resumen del taller -->
+    <div class="card mt-3">
+      <div class="card-header fw-bold">Resumen del Taller</div>
+      <div class="card-body">
+        <p class="mb-1">Ingreso total del taller:
+          <span id="body_lblIngresoTotal" class="fw-bold text-success">$0.00</span>
+        </p>
+        <p class="mb-1">Porcentaje de ingresos por cambio de pantalla:
+          <span id="body_lblPorcentajePantalla" class="fw-bold text-info">0.00%</span>
+        </p>
+        <p class="mb-0">Orden con menor monto a pagar:
+          <span id="body_lblOrdenMenor" class="fw-bold text-warning">—</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Formulario de Reparación -->
+  <div class="modal fade" id="reparacion" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">📋 Registrar Orden de Reparación</h5>
+        </div>
+        <div class="modal-body">
+
+          <div class="mb-2">
+            <label class="form-label">N° de Orden:</label>
+            <input type="text" class="form-control" id="rep_inOrden" placeholder="Ej: R01">
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Cliente:</label>
+            <input type="text" class="form-control" id="rep_inCliente" placeholder="Nombre del cliente">
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Costo del Repuesto ($):</label>
+            <input type="number" class="form-control" id="rep_inCostoRepuesto" placeholder="Ej: 30" min="0">
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label">Tipo de Servicio:</label>
+            <select class="form-select" id="rep_selTipo">
+              <option value="pantalla">Cambio de Pantalla</option>
+              <option value="bateria">Cambio de Batería y Puerto</option>
+            </select>
+          </div>
+
+          <!-- Solo visible para Pantalla -->
+          <div class="mb-2" id="rep_rowOled">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="rep_chkOled">
+              <label class="form-check-label" for="rep_chkOled">
+                Pantalla OLED original (recargo 20%)
+              </label>
+            </div>
+          </div>
+
+          <!-- Solo visible para Batería -->
+          <div class="mb-2" id="rep_rowReciclaje" hidden>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="rep_chkReciclaje">
+              <label class="form-check-label" for="rep_chkReciclaje">
+                Entrega batería dañada para reciclaje (descuento $3)
+              </label>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="rep_btCancelar">Cancelar</button>
+          <button type="button" class="btn btn-success" id="rep_btAceptar">Registrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script type="module">
+    import cServicioTecnico from "./dist/controllers/cServicioTecnico.js";
+    import cReparacion from "./dist/controllers/cReparacion.js";
+
+    import vServicioTecnicoBootstrap from "./dist/views/vServicioTecnicoBootstrap.js";
+    import vReparacionBootstrap from "./dist/views/vReparacionBootstrap.js";
+
+    // 1. Instanciar las vistas
+    const vistaServicio = new vServicioTecnicoBootstrap();
+    const vistaReparacion = new vReparacionBootstrap();
+
+    // 2. Inyectar vistas en los controladores
+    const controladorReparacion = new cReparacion(vistaReparacion);
+    new cServicioTecnico(vistaServicio, controladorReparacion);
+  </script>
+</body>
+
+</html>

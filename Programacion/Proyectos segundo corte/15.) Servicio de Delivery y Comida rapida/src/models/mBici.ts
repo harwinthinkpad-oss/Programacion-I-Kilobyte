@@ -38,4 +38,15 @@ export default class MBici extends MEnvio {
     if (this.horaPico) costo += 1.25;
     return costo;
   }
+
+  override tiempoEstimado(): number {
+    let tiempo = this.tiempoBase + 12;
+    if (this.horaPico) {
+      tiempo += 5;
+    }
+    if (this.bolsaTermica) {
+      tiempo += 2;
+    }
+    return tiempo;
+  }
 }

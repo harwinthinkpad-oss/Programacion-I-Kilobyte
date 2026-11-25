@@ -4,17 +4,19 @@ export default class VDeliveryBootstrap {
     lblMoto;
     lblBici;
     lblPromedio;
+    lblTiempoPromedio;
     constructor() {
         this.btNuevo = document.getElementById("body_btNuevoEnvio");
         this.filas = document.getElementById("body_envios");
         this.lblMoto = document.getElementById("body_lblMoto");
         this.lblBici = document.getElementById("body_lblBici");
         this.lblPromedio = document.getElementById("body_lblPromedio");
+        this.lblTiempoPromedio = document.getElementById("body_lblTiempoPromedio");
     }
     onNuevoEnvio(callback) {
         this.btNuevo.onclick = callback;
     }
-    reportar({ envio, totalMoto, totalBici, promedioGeneral, }) {
+    reportar({ envio, totalMoto, totalBici, promedioGeneral, tiempoPromedio, }) {
         if (envio !== null) {
             const fila = document.createElement("tr");
             const guia = document.createElement("td");
@@ -23,12 +25,15 @@ export default class VDeliveryBootstrap {
             tipo.textContent = envio.tipo;
             const costo = document.createElement("td");
             costo.textContent = `$${this.formatearMonto(envio.costo)}`;
-            fila.append(guia, tipo, costo);
+            const tiempo = document.createElement("td");
+            tiempo.textContent = `${envio.tiempoEstimado} min`;
+            fila.append(guia, tipo, costo, tiempo);
             this.filas.append(fila);
         }
         this.lblMoto.textContent = `$${this.formatearMonto(totalMoto)}`;
         this.lblBici.textContent = `$${this.formatearMonto(totalBici)}`;
         this.lblPromedio.textContent = `$${this.formatearMonto(promedioGeneral)}`;
+        this.lblTiempoPromedio.textContent = `${this.formatearMonto(tiempoPromedio)} min`;
     }
     formatearMonto(monto) {
         return monto.toFixed(2);

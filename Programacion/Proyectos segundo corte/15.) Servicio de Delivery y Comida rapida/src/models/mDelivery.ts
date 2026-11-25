@@ -1,3 +1,4 @@
+import MEnvio from "./mEnvio.js";
 import MBici from "./mBici.js";
 import MMoto from "./mMoto.js";
 
@@ -5,18 +6,22 @@ export default class MDelivery {
   private acRecaudadoMoto: number = 0;
   private acRecaudadoBici: number = 0;
   private acCostoEnvios: number = 0;
+  private acTiempoEstimado: number = 0;
   private cntEnvios: number = 0;
 
-  procesarEnvioMoto(envio: MMoto): void {
-    this.acCostoEnvios += envio.costoEnvio;
-    this.cntEnvios++;
-    this.acRecaudadoMoto += envio.costoEnvio;
-  }
+  procesar(envio: MEnvio): void {
+    const costo = envio.costoEnvio;
+    const tiempo = envio.tiempoEstimado();
 
-  procesarEnvioBici(envio: MBici): void {
-    this.acCostoEnvios += envio.costoEnvio;
+    this.acCostoEnvios += costo;
+    this.acTiempoEstimado += tiempo;
     this.cntEnvios++;
-    this.acRecaudadoBici += envio.costoEnvio;
+
+    if (envio instanceof MMoto) {
+      this.acRecaudadoMoto += costo;
+    } else if (envio instanceof MBici) {
+      this.acRecaudadoBici += costo;
+    }
   }
 
   totalMoto(): number {
@@ -29,6 +34,11 @@ export default class MDelivery {
 
   promedioGeneral(): number {
     if (this.cntEnvios > 0) return this.acCostoEnvios / this.cntEnvios;
+    return 0;
+  }
+
+  tiempoPromedio(): number {
+    if (this.cntEnvios > 0) return this.acTiempoEstimado / this.cntEnvios;
     return 0;
   }
 }

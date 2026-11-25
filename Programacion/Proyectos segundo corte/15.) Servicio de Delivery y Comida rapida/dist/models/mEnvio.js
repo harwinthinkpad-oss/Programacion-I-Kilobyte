@@ -20,5 +20,8 @@ export default class MEnvio {
     get costoEnvio() {
         return 2;
     }
+    get tiempoBase() {
+        return 10;
+    }
 }
 //# sourceMappingURL=mEnvio.js.map
